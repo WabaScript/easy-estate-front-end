@@ -1,0 +1,129 @@
+import React, { Component, useRef } from 'react'
+import { ActivityIndicator, Text, View, StyleSheet, Image, SafeAreaView,
+    ScrollView, ImageBackground, Animated, useWindowDimensions, TouchableOpacity} from 'react-native'
+import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
+import ListingInfoCard from './ListingInfoCard';
+
+export default function MainCard({thumb, images, realtor, address, price, bed, bath, updated_at, comments}) {
+
+    const scrollX = useRef(new Animated.Value(0)).current;
+    const { width: windowWidth } = useWindowDimensions();
+
+        return (
+        <>
+        {console.log(comments)}
+            <Card>
+                <CardItem>
+                    <Left>
+                        <Thumbnail 
+                            source={{uri: thumb}}
+                        /> 
+                        <Body>
+                            <Text>{realtor}</Text>
+                            <Text note>Today @ 9:39 pm</Text>
+                        </Body>
+                    </Left>
+                </CardItem>
+                <CardItem>
+                    <ScrollView
+                        horizontal={true}
+                        pagingEnabled
+                        showsHorizontalScrollIndicator={false}
+                        scrollEventThrottle={10}
+                        onScroll={Animated.event([{
+                            nativeEvent: {
+                                contentOffset: {
+                                x: scrollX
+                                }
+                            }}
+                        ])}
+                    >
+                        {images.map((image, imageIndex) => {
+                            return (
+                                <View style={{ width: windowWidth, height: 300 }} key={imageIndex} >
+                                    <ImageBackground source={{ uri: image }} style={styles.card} />
+                                </View>
+                            );
+                        })}
+                    </ScrollView>
+                </CardItem>
+                <CardItem style={styles.indicatorContainer}>
+                    {images.map((image, imageIndex) => {
+                        const width = scrollX.interpolate({
+                        inputRange: [
+                            windowWidth * (imageIndex - 1),
+                            windowWidth * imageIndex,
+                            windowWidth * (imageIndex + 1)
+                        ],
+                        outputRange: [10, 20, 10],
+                        extrapolate: "clamp"
+                        });
+                        return (
+                        <Animated.View
+                            key={imageIndex}
+                            style={[styles.normalDot, { width }]}
+                        />
+                        );
+                    })}
+                </CardItem>
+            </Card>
+            <ListingInfoCard comments={comments} realtor={realtor} address={address} price={price} bed={bed} bath={bath}/>
+            {/* <Card >
+                <CardItem style={{paddingLeft: 35}}>
+                    <Left>
+                        <Button transparent >
+                            <Icon type="FontAwesome" name="phone" style={{color: "green"}}/>
+                        </Button>
+                        <Body>
+                            <TouchableOpacity>
+                            <Text>{realtor}</Text>
+                            </TouchableOpacity>
+                            <Text note>{address}</Text>
+                            <Text note>{price}      {bed} bed {bath} bath</Text>
+                        </Body>
+                    </Left>
+                </CardItem>
+            </Card> */}
+        </>
+        )
+}
+
+
+
+const styles = StyleSheet.create({
+    // container: {
+    //   flex: 1,
+    //   alignItems: "center",
+    //   justifyContent: "center"
+    // },
+    // scrollContainer: {
+    //   height: 300,
+    //   alignItems: "center",
+    //   justifyContent: "center"
+    // },
+    card: {
+      flex: 1,
+      marginVertical: 4,
+      marginHorizontal: 30,
+      borderRadius: 25,
+      overflow: "hidden",
+      alignItems: "center",
+      justifyContent: "center"
+    },
+    normalDot: {
+      height: 8,
+      width: 8,
+      borderRadius: 4,
+      backgroundColor: "silver",
+      marginHorizontal: 4,
+      overflow: "hidden"
+    },
+    indicatorContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
+      overflow: "hidden"
+
+    }
+  });
+  
