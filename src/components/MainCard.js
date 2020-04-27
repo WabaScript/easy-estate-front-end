@@ -11,7 +11,6 @@ export default function MainCard({thumb, images, realtor, address, price, bed, b
 
         return (
         <>
-        {console.log(comments)}
             <Card>
                 <CardItem>
                     <Left>
