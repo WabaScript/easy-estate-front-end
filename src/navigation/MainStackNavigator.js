@@ -37,7 +37,7 @@ function MainStackNavigator({ navigation }) {
         <MainStack.Screen
             name='ProfileScreen'
             component={ProfileScreen}
-            options={{ title: 'FIRST NAME', headerBackTitle: "🏠" }}
+            options={{ title: 'Current User', headerBackTitle: "🏠" }}
         />
       </MainStack.Navigator>
   )

@@ -27,13 +27,15 @@ export default function ListingInfoCard({comments, realtor, address, price, bed,
                 </CardItem>
                 {cardOpen &&
                 <CardItem >
+                     <ScrollView
+                        horizontal={true} >
                     {comments.length > 0 ? 
                     comments.map((comment, commentIndex) => {
                             return (
-                                <Left key={commentIndex} >
+                                <Left key={commentIndex} style={styles.container}>
                                     <Thumbnail small source={{uri: comment.user.pro_pic}}/> 
                                     <Body>
-                                        <Text>{comment.user.first_name}</Text>
+                                        <Text style={styles.user}>{comment.user.first_name}</Text>
                                         <Text note>{comment.content}</Text>
                                     </Body>
                                 </Left>
@@ -45,9 +47,19 @@ export default function ListingInfoCard({comments, realtor, address, price, bed,
                                 </Body>
                             </Left>
                     }
+                    </ScrollView>
                 </CardItem>
                 }
             </Card>
         </>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        paddingRight: 12,
+      },
+    user: {
+        fontWeight: "700"
+    }
+});
