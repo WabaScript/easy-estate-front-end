@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 import { Icon } from 'native-base'
+import ProfileContainer from "../containers/ProfileContainer";
 
 function ProfileScreen() {
     return (
-        <View style={styles.container}>
-            <Text>This is your Profile!</Text>
-        </View>
+        <ProfileContainer/>
     );
 }
 export default ProfileScreen;

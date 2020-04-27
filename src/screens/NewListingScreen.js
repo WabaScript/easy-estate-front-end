@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Icon } from 'native-base'
 import NewListingForm from "../components/NewListingForm";
 
-function NewListingScreen() {
+function NewListingScreen({navigation}) {
     
     function submitListing(newListing) {
         const listingPost= {
@@ -25,7 +25,7 @@ function NewListingScreen() {
     return (
         <View style={styles.container}>
             <Text>New Listing Screen!</Text>
-            <NewListingForm submitListing={submitListing}/>
+            <NewListingForm navigation={navigation} submitListing={submitListing}/>
         </View>
         
     );

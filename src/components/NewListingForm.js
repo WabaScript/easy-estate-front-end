@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, } from "react-native";
 
 import { Icon } from 'native-base'
 import MainFeedContainer from "../containers/MainFeedContainer";
 import { TextInput } from "react-native-gesture-handler";
 
-const NewListingForm = ({ submitListing }) => {
+const NewListingForm = ({ navigation, submitListing }) => {
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
@@ -21,18 +21,6 @@ const NewListingForm = ({ submitListing }) => {
     const [owner_id, setOwner_id] = useState("");
 
     // const onChangeAddress = addressValue => setAddress(addressValue)
-    // const onChangeCity = cityValue => setCity(cityValue)
-    // const onChangeState = stateValue => setState(stateValue)
-    // const onChangeZipcode = zipcodeValue => setZipcode(zipcodeValue)
-    // const onChangeNeighborhood = neighborhoodValue => setNeighborhood(neighborhoodValue)
-    // const onChangePrice = priceValue => setPrice(priceValue)
-    // const onChangeFeatures = featuresValue => setFeatures(featuresValue)
-    // const onChangeBed = bedValue => setBed(bedValue)
-    // const onChangeBath = bathValue => setBath(bathValue)
-    // const onChangeSqrFoot = sqr_footValue => setSqr_foot(sqr_footValue)
-    // const onChangeDefaultImage = default_imageValue => setDefault_image(default_imageValue)
-    // const onChangeP_contact = p_contactValue => setP_contact(p_contactValue)
-    // const onChangeOwner_id = owner_idValue => setOwner_id(owner_idValue)
 
     const newListing = {
         address: address,
@@ -119,8 +107,8 @@ const NewListingForm = ({ submitListing }) => {
             style={styles.input} 
             onChangeText={(text) => setOwner_id(text)} value={owner_id}
             />
-        <TouchableOpacity style={styles.btn} onPress={() => submitListing(newListing)}>
-                <Text style={styles.btnText}>
+        <TouchableOpacity style={styles.btn} onPress={() => {submitListing(newListing); navigation.navigate("Home")}}>
+                <Text style={styles.text}>
                     <Icon type="Entypo" name="new-message"/> Submit Listing
                 </Text>
 
@@ -135,21 +123,27 @@ export default NewListingForm;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor:'white'
+        backgroundColor:'white',
+        paddingRight: 40,
+        padding: 10
     },
     input: {
-        height: 60,
-        padding: 8,
-        fontSize: 16,
-    },
-    btn: {
-        backgroundColor: "lightyellow",
-        padding: 9,
-        margin: 5,
-    },
-    btnText: {
-        color: "black",
-        fontSize: 20,
-        textAlign: "center"
-    }
+        backgroundColor: "lightgrey",
+        width: '100%',
+        padding: 10,
+        borderRadius: 10
+      },
+      btn: {
+        backgroundColor: "saddlebrown",
+        width: "100%",
+        alignItems: 'center',
+        justifyContent: "center",
+        padding: 30,
+        borderRadius: 10
+      },
+      text: {
+          fontSize: 20,
+          fontWeight: '700',
+          color: 'white'
+      }
 });

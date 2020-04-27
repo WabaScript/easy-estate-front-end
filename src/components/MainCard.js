@@ -14,9 +14,7 @@ export default function MainCard({thumb, images, realtor, address, price, bed, b
             <Card>
                 <CardItem>
                     <Left>
-                        <Thumbnail 
-                            source={{uri: thumb}}
-                        /> 
+                        { thumb && <Thumbnail source={{uri: thumb}} /> }
                         <Body>
                             <Text>{realtor}</Text>
                             <Text note>Today @ 9:39 pm</Text>
@@ -37,7 +35,7 @@ export default function MainCard({thumb, images, realtor, address, price, bed, b
                             }}
                         ])}
                     >
-                        {images.map((image, imageIndex) => {
+                        {images && images.map((image, imageIndex) => {
                             return (
                                 <View style={{ width: windowWidth, height: 300 }} key={imageIndex} >
                                     <ImageBackground source={{ uri: image }} style={styles.card} />
