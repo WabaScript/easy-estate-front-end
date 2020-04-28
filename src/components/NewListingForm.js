@@ -107,10 +107,11 @@ const NewListingForm = ({ navigation, submitListing }) => {
             style={styles.input} 
             onChangeText={(text) => setOwner_id(text)} value={owner_id}
             />
-        <TouchableOpacity style={styles.btn} onPress={() => {submitListing(newListing); navigation.navigate("Home")}}>
+        <TouchableOpacity style={styles.btn} onPress={() => {submitListing(newListing); navigation.push("AppTabMain", {screen: 'Home'})}}>
                 <Text style={styles.text}>
                     <Icon type="Entypo" name="new-message"/> Submit Listing
                 </Text>
+
         </TouchableOpacity>
        </KeyboardAvoidingView>
        </ScrollView>
