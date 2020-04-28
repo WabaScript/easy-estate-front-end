@@ -6,17 +6,20 @@ import { NavigationContainer } from '@react-navigation/native'
 import LoginScreen from './screens/LoginScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import AuthStackNavigator from './navigation/AuthStackNavigator';
+import Store from './components/Store'
 
 const RootStack =createStackNavigator()
 
 export default function App() {
     return (
+      <Store>
       <NavigationContainer>
         <RootStack.Navigator screenOptions={{headerShown: false}}>
             <RootStack.Screen name={"AuthStack"} component={AuthStackNavigator} />
             <RootStack.Screen name={"MainStack"} component={MainStackNavigator} />
         </RootStack.Navigator>
       </NavigationContainer>
+      </Store>
     );
 }
 
