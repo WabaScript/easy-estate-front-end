@@ -39,6 +39,7 @@ function MainFeedContainer() {
                             price={money(listing.price)} 
                             bed={listing.bed} 
                             bath={listing.bath}
+                            phone={listing.p_contact}
                             comments={listing.comments}
                             updatedDate={listing.updated_at}
                             updatedTime={listing.updated_at}
