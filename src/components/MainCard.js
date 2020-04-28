@@ -1,13 +1,32 @@
-import React, { Component, useRef } from 'react'
+import React, { Component, useRef, useState } from 'react'
 import { ActivityIndicator, Text, View, StyleSheet, Image, SafeAreaView,
     ScrollView, ImageBackground, Animated, useWindowDimensions, TouchableOpacity} from 'react-native'
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 import ListingInfoCard from './ListingInfoCard';
 
-export default function MainCard({phone, thumb, images, realtor, address, price, bed, bath, updated_at, comments}) {
+export default function MainCard({phone, listId, thumb, images, realtor, address, price, bed, bath, updated_at, comments}) {
 
     const scrollX = useRef(new Animated.Value(0)).current;
     const { width: windowWidth } = useWindowDimensions();
+    const [userId, setUserId] = useState('')
+
+    const handleBookmark = () => {
+        const followListingPost = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                    follower_id: 5,
+                    listing_id: listId
+                })
+        }
+        fetch(`http://10.0.0.113:3000/api/v1/follow_listings`, followListingPost)
+            .then((response) => response.json())
+            .then((json) => alert("Listing added to Bookmarks!"))
+            .catch((error) => console.error(error))
+    }
 
         return (
         <>
@@ -20,6 +39,11 @@ export default function MainCard({phone, thumb, images, realtor, address, price,
                             <Text note>Today @ 9:39 pm</Text>
                         </Body>
                     </Left>
+                    <Right>
+                        <TouchableOpacity onPress={() => handleBookmark()} >
+                        <Icon type="MaterialIcons" name="library-add" />
+                        </TouchableOpacity>
+                    </Right>
                 </CardItem>
                 <CardItem>
                     <ScrollView

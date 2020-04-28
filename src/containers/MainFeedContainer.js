@@ -32,6 +32,7 @@ function MainFeedContainer() {
                     return (
                         <MainCard 
                             key={index}
+                            listId={listing.id}
                             images={listing.default_image} 
                             thumb={listing.owner.pro_pic} 
                             realtor={listing.owner.first_name + listing.owner.last_name} 
