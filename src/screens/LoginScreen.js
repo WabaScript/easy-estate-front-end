@@ -3,6 +3,7 @@ import {View, StyleSheet, Text, TouchableWithoutFeedback, Keyboard} from 'react-
 import Heading from '../components/Heading';
 import Input from '../components/Input';
 import LoginScreenButton from '../components/LoginScreenButton';
+import LoginScreenRegButton from '../components/LoginScreenRegButton';
 import QuickHomeButton from '../components/QuickHomeButton';
 import Error from '../components/Error';
  
@@ -15,6 +16,7 @@ export default function LoginScreen({ navigation }) {
         <Input style={styles.input} placeholder={"Enter E-mail..."} keyboardType={'email-address'}/>
         <Input style={styles.input} placeholder={"Enter Password..."} secureTextEntry/>
         <LoginScreenButton title={"LOGIN"} style={styles.loginButton} onPress={() => {}}/>
+        <LoginScreenRegButton title={"Register"} style={styles.registerButton} onPress={() => {navigation.navigate('Registration')}} />
         <QuickHomeButton title={"Quick Home View"} onPress={() => {navigation.navigate('MainStack')}}/>
     </View>
     </TouchableWithoutFeedback>
@@ -36,5 +38,8 @@ const styles = StyleSheet.create({
   },
   loginButton: {
       marginVertical: 10
+  },
+  registerButton: {
+    marginVertical: 10
   }
 });

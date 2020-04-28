@@ -7,6 +7,7 @@ import AppTabMain from '../screens/AppTabMain'
 import ProfileScreen from '../screens/ProfileScreen'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import LoginScreen from '../screens/LoginScreen'
+import RegistrationScreen from '../screens/RegistrationScreen'
 
 const AuthStack = createStackNavigator()
 
@@ -14,7 +15,7 @@ const AuthStackNavigator = ({navigation}) => {
   return (
       <AuthStack.Navigator screenOptions={{headerShown: false}}>
           <AuthStack.Screen name={"Login"} component={LoginScreen} />
-          {/* <AuthStack.Screen name={"Registration"} component={***} /> */}
+          <AuthStack.Screen name={"Registration"} component={RegistrationScreen} />
       </AuthStack.Navigator>
 
   );

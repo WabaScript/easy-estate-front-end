@@ -111,7 +111,6 @@ const NewListingForm = ({ navigation, submitListing }) => {
                 <Text style={styles.text}>
                     <Icon type="Entypo" name="new-message"/> Submit Listing
                 </Text>
-
         </TouchableOpacity>
        </KeyboardAvoidingView>
        </ScrollView>
