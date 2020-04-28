@@ -1,10 +1,13 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect, useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import {Context} from '../components/Store'
 
 import { Icon } from 'native-base'
 import NewListingForm from "../components/NewListingForm";
 
 function NewListingScreen({navigation}) {
+
+    const [state, dispatch] = useContext(Context);
     
     function submitListing(newListing) {
         const listingPost= {
@@ -18,6 +21,10 @@ function NewListingScreen({navigation}) {
         fetch(`http://10.0.0.113:3000/api/v1/listings`, listingPost)
             .then((response) => response.json())
             .then((json) => console.log(json))
+            .then((json) => { 
+                dispatch({type: "ADD_LISTINGS", payload: json})
+                // setListings(json)
+              })
             .catch((error) => console.error(error))
     }
 

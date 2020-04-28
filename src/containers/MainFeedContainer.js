@@ -1,19 +1,28 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useState, useContext } from "react";
 import { ActivityIndicator, View, Text, StyleSheet } from "react-native";
 import MainCard from '../components/MainCard'
+import {Context} from '../components/Store'
 
 import { Icon, Container, Content } from 'native-base'
 import { ScrollView } from "react-native-gesture-handler";
 
 function MainFeedContainer() {
     const [isLoading, setLoading] = useState(true);
-    const [listings, setListings] = useState([]);
+   // const [listings, setListings] = useState([]);
+
+    const [state, dispatch] = useContext(Context);
+
+    console.log(state)
 
     // adding the empt array arg at the end simulates a true componentdidmount, rendering only on initial mount
     useEffect(() => {
         fetch('http://10.0.0.113:3000/api/v1/listings')
           .then((response) => response.json())
-          .then((json) => setListings(json))
+          .then((json) => { 
+              dispatch({type: "SET_LISTINGS", payload: json})
+              // setListings(json)
+            })
+
           .catch((error) => console.error(error))
           .finally(() => setLoading(false));
       }, []);
@@ -28,7 +37,7 @@ function MainFeedContainer() {
         {isLoading ? <ActivityIndicator style={styles.indicator}/> : (
         <Container styles={styles.container}>
             <Content showsVerticalScrollIndicator={false}>
-                {listings.map((listing, index) => {
+                {state.listings.map((listing, index) => {
                     return (
                         <MainCard 
                             key={index}
