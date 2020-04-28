@@ -4,7 +4,7 @@ import { ActivityIndicator, Text, View, StyleSheet, Image, SafeAreaView,
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 import ListingInfoCard from './ListingInfoCard';
 
-export default function MainCard({thumb, images, realtor, address, price, bed, bath, updated_at, comments}) {
+export default function MainCard({phone, thumb, images, realtor, address, price, bed, bath, updated_at, comments}) {
 
     const scrollX = useRef(new Animated.Value(0)).current;
     const { width: windowWidth } = useWindowDimensions();
@@ -64,7 +64,7 @@ export default function MainCard({thumb, images, realtor, address, price, bed, b
                     })}
                 </CardItem>
             </Card>
-            <ListingInfoCard comments={comments} realtor={realtor} address={address} price={price} bed={bed} bath={bath}/>
+            <ListingInfoCard phone ={phone} comments={comments} realtor={realtor} address={address} price={price} bed={bed} bath={bath}/>
             {/* <Card >
                 <CardItem style={{paddingLeft: 35}}>
                     <Left>
