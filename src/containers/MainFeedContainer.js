@@ -42,17 +42,21 @@ function MainFeedContainer() {
                         <MainCard 
                             key={index}
                             listId={listing.id}
-                            images={listing.default_image} 
-                            thumb={listing.owner.pro_pic} 
                             realtor={listing.owner.first_name + listing.owner.last_name} 
-                            address={listing.address +" "+ listing.state} 
+                            thumb={listing.owner.pro_pic} 
+                            phone={listing.p_contact}
                             price={money(listing.price)} 
+                            images={listing.default_image} 
+                            address={listing.address}
+                            cityAndState={listing.city + ", " + listing.state}
+                            zip={listing.zipcode}
+                            neighborhood={listing.neighborhood}
                             bed={listing.bed} 
                             bath={listing.bath}
-                            phone={listing.p_contact}
+                            features={listing.features}
+                            sqrFoot={listing.sqrFoot}
                             comments={listing.comments}
                             updatedDate={listing.updated_at}
-                            updatedTime={listing.updated_at}
                             />
                     );
                 })}

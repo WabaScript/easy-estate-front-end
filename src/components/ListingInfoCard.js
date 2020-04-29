@@ -2,8 +2,12 @@ import React, { Component, useState } from 'react'
 import { ActivityIndicator, Text, View, StyleSheet, Image, SafeAreaView,
     ScrollView, ImageBackground, Animated, useWindowDimensions, TouchableOpacity, Linking} from 'react-native'
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
+import CommentList from './CommentList'
+import ExpandedListingInfoCard from './ExpandedListingInfoCard'
 
-export default function ListingInfoCard({comments, realtor, address, price, bed, bath, phone}) {
+export default function ListingInfoCard({listId, phone, comments, realtor, address, price, bed, bath, cityAndState, zip, neighborhood, features, sqrFoot, updatedDate,}) {
+
+
     const [cardOpen, setCardOpen] = useState(false)
 
     const phoneParse = (number) => {
@@ -33,27 +37,7 @@ export default function ListingInfoCard({comments, realtor, address, price, bed,
                 </CardItem>
                 {cardOpen &&
                 <CardItem >
-                     <ScrollView
-                        horizontal={true} >
-                    {comments.length > 0 ? 
-                    comments.map((comment, commentIndex) => {
-                            return (
-                                <Left key={commentIndex} style={styles.container}>
-                                    <Thumbnail small source={{uri: comment.user.pro_pic}}/> 
-                                    <Body>
-                                        <Text style={styles.user}>{comment.user.first_name}</Text>
-                                        <Text note>{comment.content}</Text>
-                                    </Body>
-                                </Left>
-                            )})
-                    :
-                            <Left>
-                                <Body>
-                                    <Text>No Comments yet!</Text>
-                                </Body>
-                            </Left>
-                    }
-                    </ScrollView>
+                     <ExpandedListingInfoCard listId={listId} comments={comments} cityAndState={cityAndState} zip={zip} neighborhood={neighborhood} features={features} sqrFoot={sqrFoot} />
                 </CardItem>
                 }
             </Card>

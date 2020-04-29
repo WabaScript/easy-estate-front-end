@@ -23,8 +23,7 @@ function NewListingScreen({navigation}) {
             .then((json) => console.log(json))
             .then((json) => { 
                 dispatch({type: "ADD_LISTINGS", payload: json})
-                // setListings(json)
-              })
+            })
             .catch((error) => console.error(error))
     }
 
