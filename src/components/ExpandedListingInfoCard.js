@@ -4,7 +4,8 @@ import { ActivityIndicator, Text, View, StyleSheet, Image, SafeAreaView,
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 import CommentList from './CommentList';
 
-export default function ExpandedListingInfoCard({comments, realtor, address, price, bed, bath, phone}) {
+export default function ExpandedListingInfoCard({listId, comments, cityAndState, zip, neighborhood, features, sqrFoot}) {
+
 
 
     const phoneParse = (number) => {
@@ -13,21 +14,28 @@ export default function ExpandedListingInfoCard({comments, realtor, address, pri
 
     return (
         <>
-            <Card >
-                <CardItem >
-                    {/* more details */}
-                    <CommentList />
-                </CardItem>
-            </Card>
+        <View style={styles.container}>
+            <Body style={styles.bod} >
+                <Text note>Neighborhood: {neighborhood}</Text>
+                <Text note>Features: {features}</Text>
+            </Body>
+            <CommentList listId={listId} comments={comments}/>
+        </View>
         </>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        paddingRight: 12,
+        paddingLeft: 60,
+      },
+      bod: {
+        paddingBottom: 10
       },
     user: {
         fontWeight: "700"
+    },
+    right: {
+        paddingLeft: 200
     }
 });

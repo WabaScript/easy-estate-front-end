@@ -4,7 +4,7 @@ import { ActivityIndicator, Text, View, StyleSheet, Image, SafeAreaView,
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 import ListingInfoCard from './ListingInfoCard';
 
-export default function MainCard({phone, listId, thumb, images, realtor, address, price, bed, bath, updated_at, comments}) {
+export default function MainCard({phone, listId, thumb, images, realtor, address, price, bed, bath, updatedDate, cityAndState, features, neighborhood, zip, sqrFoot, comments}) {
 
     const scrollX = useRef(new Animated.Value(0)).current;
     const { width: windowWidth } = useWindowDimensions();
@@ -36,7 +36,7 @@ export default function MainCard({phone, listId, thumb, images, realtor, address
                         { thumb && <Thumbnail source={{uri: thumb}} /> }
                         <Body>
                             <Text>{realtor}</Text>
-                            <Text note>Today @ 9:39 pm</Text>
+                            <Text note>Today @ 9:39 pm {updatedDate}</Text>
                         </Body>
                     </Left>
                     <Right>
@@ -88,7 +88,24 @@ export default function MainCard({phone, listId, thumb, images, realtor, address
                     })}
                 </CardItem>
             </Card>
-            <ListingInfoCard phone ={phone} comments={comments} realtor={realtor} address={address} price={price} bed={bed} bath={bath}/>
+            <ListingInfoCard
+                listId={listId} 
+                phone ={phone} 
+                comments={comments} 
+                realtor={realtor} 
+                address={address} 
+                price={price} 
+                bed={bed} 
+                bath={bath}
+                cityAndState={cityAndState}
+                zip={zip}
+                neighborhood={neighborhood}
+                features={features}
+                sqrFoot={sqrFoot}
+                updatedDate={updatedDate}
+            />
+
+                           
             {/* <Card >
                 <CardItem style={{paddingLeft: 35}}>
                     <Left>
