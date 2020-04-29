@@ -55,7 +55,9 @@ export default function CommentList({listId, comments, realtor, address, price, 
                 <ScrollView >
                 <Body style={styles.newForm} >
                    <Input style={styles.inputOverRide} onChangeText={(text) => setComment(text)} value={comment}/>
-                   <Icon type="FontAwesome" name="send" style={styles.send} onPress={() => handleComment()} />
+                   <TouchableOpacity onPress={() => handleComment()}>
+                        <Icon type="FontAwesome" name="send" style={styles.send} />
+                   </TouchableOpacity>
                 </Body>
                 </ScrollView>
             }
