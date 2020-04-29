@@ -3,6 +3,7 @@ import { ActivityIndicator, View, Text, StyleSheet } from "react-native";
 import MainCard from '../components/MainCard'
 import ProfileBookmarksCard from '../components/ProfileBookmarksCard'
 import ProfileCard from '../components/ProfileCard'
+import { LinearGradient } from 'expo-linear-gradient';
 
 import { Icon, Container, Content } from 'native-base'
 import { ScrollView } from "react-native-gesture-handler";
@@ -26,20 +27,28 @@ function ProfileContainer() {
         {isLoading ? <ActivityIndicator style={styles.indicator}/> : (
         <>
         <Container >
-            <Content showsVerticalScrollIndicator={false}>
-                <ProfileCard 
-                    pic={user.pro_pic} 
-                    firstName={user.first_name} 
-                    lastName={user.last_name} 
-                    city={user.city} 
-                    state={user.state}
-                    realtor={user.realtor}
-                    />
-            </Content>
-            </Container>
-            <Container style={styles.container}>
+            <LinearGradient
+            colors={['#A34C00', '#FFC694', ]}
+            style={{ position: 'absolute', left: 0, right: 0, top: 0, height: 420,}}
+            />
+                <Content showsVerticalScrollIndicator={false}>
+                    <ProfileCard 
+                        pic={user.pro_pic} 
+                        firstName={user.first_name} 
+                        lastName={user.last_name} 
+                        city={user.city} 
+                        state={user.state}
+                        realtor={user.realtor}
+                        />
+                </Content>
+        </Container>
+        <Container >
+            <LinearGradient
+                colors={['#FFC694', '#A34C00', ]}
+                style={{ position: 'absolute', left: 0, right: 0, top: 0, height: 500 }}
+            />
             <Content>
-                <ProfileBookmarksCard bookmarks={user.followed_listings} listings={user.listings}/>
+                    <ProfileBookmarksCard bookmarks={user.followed_listings} listings={user.listings}/>
             </Content>
         </Container>
         </>
@@ -52,7 +61,6 @@ export default ProfileContainer;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
       },
       title: {
         marginBottom: 20
@@ -62,5 +70,5 @@ const styles = StyleSheet.create({
       },
       loginButton: {
           marginVertical: 10
-      }
+      },
 });
