@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {View, StyleSheet, Text, ScrollView, Keyboard, KeyboardAvoidingView, Switch } from 'react-native';
 import Heading from '../components/Heading';
 import Input from '../components/Input';
 import LoginScreenRegButton from '../components/LoginScreenRegButton';
 import QuickHomeButton from '../components/QuickHomeButton';
 import Error from '../components/Error';
+import {Context} from '../actions/Store'
  
 export default function RegistrationScreen({ navigation }) {
     const [firstName, setFirstName] = useState("");
@@ -13,10 +14,12 @@ export default function RegistrationScreen({ navigation }) {
     const [password, setPassword] = useState("");
     const [proPic, setProPic] = useState("");
     const [city, setCity] = useState("");
-    const [state, setState] = useState("");
+    const [regionalState, setRegionalState] = useState("");
     const [realtor, setRealtor] = useState(false);
 
     const toggleSwitch = () => setRealtor(prevState => !prevState);
+
+    const [state, dispatch] = useContext(Context);
 
     const handleSubmit = () => {
         const newUserPost = {
@@ -32,13 +35,17 @@ export default function RegistrationScreen({ navigation }) {
                password: password,
                pro_pic: proPic,
                city: city,
-               state: state,
+               state: regionalState,
                realtor: realtor
             }})
         }
         fetch(`http://10.0.0.113:3000/api/v1/users`, newUserPost)
             .then((response) => response.json())
-            .then((json) => alert("Thank You for Registering!"))
+            .then((json) => {
+                dispatch({type: "SET_CURRENT_USER", payload: json})
+            })
+            .then(alert("Thank You for Registering!"))
+            .then(navigation.navigate("MainStack"))
             .catch((error) => console.error(error))
     }
 
@@ -81,7 +88,7 @@ export default function RegistrationScreen({ navigation }) {
                 <Input 
                     style={styles.input} 
                     placeholder={"Enter State ..."} 
-                    onChangeText={(text) => setState(text)} value={state}
+                    onChangeText={(text) => setRegionalState(text)} value={regionalState}
                     keyboardType={'email-address'} 
                 />
                 <Input 
@@ -102,7 +109,7 @@ export default function RegistrationScreen({ navigation }) {
                     />
             </View>
             <View style={styles.btnContainer}>
-                <LoginScreenRegButton title={"Register"} style={styles.loginButton} onPress={() => {handleSubmit(); navigation.navigate('Login')}} />
+                <LoginScreenRegButton title={"Register"} style={styles.loginButton} onPress={handleSubmit} />
                 <QuickHomeButton title={"Return To Login"} onPress={() => {navigation.goBack()}}/>
             </View>
         </ScrollView>

@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState, useContext } from "react";
 import { ActivityIndicator, View, Text, StyleSheet } from "react-native";
 import MainCard from '../components/MainCard'
-import {Context} from '../components/Store'
+import {Context} from '../actions/Store'
 
 import { Icon, Container, Content } from 'native-base'
 import { ScrollView } from "react-native-gesture-handler";

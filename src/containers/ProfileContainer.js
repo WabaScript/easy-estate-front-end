@@ -4,14 +4,14 @@ import MainCard from '../components/MainCard'
 import ProfileBookmarksCard from '../components/ProfileBookmarksCard'
 import ProfileCard from '../components/ProfileCard'
 import { LinearGradient } from 'expo-linear-gradient';
-import {Context} from '../components/Store'
+import {Context} from '../actions/Store'
 import { Icon, Container, Content } from 'native-base'
 
 function ProfileContainer() {
     const [state, dispatch] = useContext(Context);
     const [isLoading, setLoading] = useState(true);
     const [user, setUser] = useState([]);
-    
+
 
     // adding the empt array arg at the end simulates a true componentdidmount, rendering only on initial mount
     useEffect(() => {

@@ -1,17 +1,20 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, } from "react-native";
+import React, { useState, useContext } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, KeyboardAvoidingView, } from "react-native";
 import Input from '../components/Input';
-import { Icon } from 'native-base'
+import { Icon, Content } from 'native-base'
 import Heading from '../components/Heading'
 import Error from '../components/Error';
 import { TextInput } from "react-native-gesture-handler";
 import LoginScreenRegButton from "./LoginScreenRegButton";
 import QuickHomeButton from './QuickHomeButton'
+import {Context} from '../actions/Store'
 
 const NewListingForm = ({ navigation, submitListing }) => {
+    const [state, dispatch] = useContext(Context)
+
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
-    const [state, setState] = useState("");
+    const [regionalState, setRegionalState] = useState("");
     const [zipcode, setZipcode] = useState("");
     const [neighborhood, setNeighborhood] = useState("");
     const [price, setPrice] = useState("");
@@ -28,7 +31,7 @@ const NewListingForm = ({ navigation, submitListing }) => {
     const newListing = {
         address: address,
         city: city,
-        state: state,
+        state: regionalState,
         zipcode: zipcode,
         neighborhood: neighborhood,
         price: price,
@@ -38,7 +41,7 @@ const NewListingForm = ({ navigation, submitListing }) => {
         sqr_foot: sqr_foot,
         default_image: [default_image],
         p_contact: p_contact,
-        owner_id: owner_id
+        owner_id: state.currentUser.id
     }
 
     return (
@@ -61,7 +64,7 @@ const NewListingForm = ({ navigation, submitListing }) => {
                 <Input 
                     placeholder="State" 
                     style={styles.input} 
-                    onChangeText={(text) => setState(text)} value={state}
+                    onChangeText={(text) => setRegionalState(text)} value={regionalState}
                 />
                 <Input 
                     placeholder="Zipcode" 

@@ -12,6 +12,8 @@ function ProfileListings({ listings }) {
       }
       
     return (
+        <>
+        {listings &&
             <Content showsVerticalScrollIndicator={false}>
                 <Card style={styles.card}>
                 <CardItem>
@@ -60,6 +62,8 @@ function ProfileListings({ listings }) {
                 </Card>
                 
             </Content>
+        }
+        </>
     );
 }
 export default ProfileListings;
