@@ -1,20 +1,21 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useState, useContext } from "react";
 import { ActivityIndicator, View, Text, StyleSheet } from "react-native";
 import MainCard from '../components/MainCard'
 import ProfileBookmarksCard from '../components/ProfileBookmarksCard'
 import ProfileCard from '../components/ProfileCard'
 import { LinearGradient } from 'expo-linear-gradient';
-
+import {Context} from '../components/Store'
 import { Icon, Container, Content } from 'native-base'
-import { ScrollView } from "react-native-gesture-handler";
 
 function ProfileContainer() {
+    const [state, dispatch] = useContext(Context);
     const [isLoading, setLoading] = useState(true);
     const [user, setUser] = useState([]);
+    
 
     // adding the empt array arg at the end simulates a true componentdidmount, rendering only on initial mount
     useEffect(() => {
-        fetch(`http://10.0.0.113:3000/api/v1/users/5`)
+        fetch(`http://10.0.0.113:3000/api/v1/users/${state.currentUser.id}`)
           .then((response) => response.json())
           .then((json) => setUser(json))
           .catch((error) => console.error(error))

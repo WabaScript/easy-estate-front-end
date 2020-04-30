@@ -10,12 +10,11 @@ const Reducer = (state, action) => {
                 ...state,
                 listings: state.listings.concat(action.payload)
             };
-        // case 'ADD-COMMENTS':
-
-        //     return {
-        //         ...state,
-        //         listings: state.listings(...state.listings[].comments)
-        //     }
+        case 'SET_CURRENT_USER':
+            return {
+                ...state,
+                currentUser: action.payload
+            }
         case 'REMOVE_LISTING':
             return {
                 ...state,
