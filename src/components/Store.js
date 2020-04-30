@@ -4,6 +4,7 @@ import Reducer from './Reducer'
 
 const initialState = {
     listings: [],
+    currentUser: null,
     users: [],
     error: null
 };
