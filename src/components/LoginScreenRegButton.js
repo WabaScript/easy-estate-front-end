@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity, Text} from 'react-native';
  
-export default function QuickHomeButton({title, style, onPress}) {
+export default function LoginScreenRegButton({title, style, onPress}) {
   return (
     <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
         <Text style={styles.text}> {title.toUpperCase()} </Text>

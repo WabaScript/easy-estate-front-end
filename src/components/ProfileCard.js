@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         height: 80,
         marginRight: 40,
-        paddingLeft: 30,
+        paddingLeft: 36,
         marginLeft: 10,
         marginTop: 145,
         fontSize: 30,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         padding: 3,
     },
     infoText: {
-        fontSize: 18,
+        fontSize: 14,
         color: "white", 
         textShadowColor: 'grey', 
         shadowOffset: {

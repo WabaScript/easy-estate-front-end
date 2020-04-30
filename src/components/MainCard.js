@@ -1,6 +1,5 @@
 import React, { Component, useRef, useState } from 'react'
-import { ActivityIndicator, Text, View, StyleSheet, Image, SafeAreaView,
-    ScrollView, ImageBackground, Animated, useWindowDimensions, TouchableOpacity} from 'react-native'
+import {  Text, View, StyleSheet, ScrollView, ImageBackground, Animated, useWindowDimensions, TouchableOpacity} from 'react-native'
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 import ListingInfoCard from './ListingInfoCard';
 
@@ -28,7 +27,7 @@ export default function MainCard({phone, listId, thumb, images, realtor, address
             .catch((error) => console.error(error))
     }
 
-        return (
+    return (
         <>
             <Card>
                 <CardItem>
@@ -36,12 +35,12 @@ export default function MainCard({phone, listId, thumb, images, realtor, address
                         { thumb && <Thumbnail source={{uri: thumb}} /> }
                         <Body>
                             <Text>{realtor}</Text>
-                            <Text note>Today @ 9:39 pm {updatedDate}</Text>
+                            <Text note>{updatedDate}</Text>
                         </Body>
                     </Left>
                     <Right>
                         <TouchableOpacity onPress={() => handleBookmark()} >
-                        <Icon type="MaterialIcons" name="library-add" />
+                            <Icon type="MaterialIcons" name="library-add" />
                         </TouchableOpacity>
                     </Right>
                 </CardItem>
@@ -57,8 +56,7 @@ export default function MainCard({phone, listId, thumb, images, realtor, address
                                 x: scrollX
                                 }
                             }}
-                        ])}
-                    >
+                        ])}>
                         {images && images.map((image, imageIndex) => {
                             return (
                                 <View style={{ width: windowWidth, height: 300 }} key={imageIndex} >
@@ -71,13 +69,13 @@ export default function MainCard({phone, listId, thumb, images, realtor, address
                 <CardItem style={styles.indicatorContainer}>
                     {images.map((image, imageIndex) => {
                         const width = scrollX.interpolate({
-                        inputRange: [
-                            windowWidth * (imageIndex - 1),
-                            windowWidth * imageIndex,
-                            windowWidth * (imageIndex + 1)
-                        ],
-                        outputRange: [10, 20, 10],
-                        extrapolate: "clamp"
+                            inputRange: [
+                                windowWidth * (imageIndex - 1),
+                                windowWidth * imageIndex,
+                                windowWidth * (imageIndex + 1)
+                            ],
+                            outputRange: [10, 20, 10],
+                            extrapolate: "clamp"
                         });
                         return (
                         <Animated.View
@@ -104,26 +102,8 @@ export default function MainCard({phone, listId, thumb, images, realtor, address
                 sqrFoot={sqrFoot}
                 updatedDate={updatedDate}
             />
-
-                           
-            {/* <Card >
-                <CardItem style={{paddingLeft: 35}}>
-                    <Left>
-                        <Button transparent >
-                            <Icon type="FontAwesome" name="phone" style={{color: "green"}}/>
-                        </Button>
-                        <Body>
-                            <TouchableOpacity>
-                            <Text>{realtor}</Text>
-                            </TouchableOpacity>
-                            <Text note>{address}</Text>
-                            <Text note>{price}      {bed} bed {bath} bath</Text>
-                        </Body>
-                    </Left>
-                </CardItem>
-            </Card> */}
         </>
-        )
+    )
 }
 
 

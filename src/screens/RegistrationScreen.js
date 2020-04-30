@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, StyleSheet, Text, TouchableWithoutFeedback, ScrollView, Keyboard, KeyboardAvoidingView, Switch, FlatList} from 'react-native';
+import {View, StyleSheet, Text, ScrollView, Keyboard, KeyboardAvoidingView, Switch } from 'react-native';
 import Heading from '../components/Heading';
 import Input from '../components/Input';
 import LoginScreenRegButton from '../components/LoginScreenRegButton';
@@ -44,70 +44,69 @@ export default function RegistrationScreen({ navigation }) {
 
 
   return (
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <ScrollView >
-        <KeyboardAvoidingView contentContainerStyle={styles.container}
-                keyboardVerticalOffset={10} behavior={"position"}>
-        <View style={styles.container}>
-        <Heading style={styles.title}>Please Sign Up</Heading>
-        <Error error={" "} />
-        </View>
-        <Input 
-            style={styles.input} 
-            placeholder={"Enter First Name ..."} 
-            onChangeText={(text) => setFirstName(text)} value={firstName}
-        />
-        <Input 
-            style={styles.input} 
-            placeholder={"Enter Last Name ..."} 
-            onChangeText={(text) => setLastName(text)} value={lastName}
-        />
-        <Input 
-            style={styles.input} 
-            placeholder={"Enter E-mail..."} 
-            onChangeText={(text) => setEmail(text)} value={email}
-            keyboardType={'email-address'} 
-        />
-        <Input 
-            style={styles.input} 
-            placeholder={"Enter Password..."}
-            onChangeText={(text) => setPassword(text)} value={password}
-            secureTextEntry
-        />
-        <Input 
-            style={styles.input} 
-            placeholder={"Enter City"} 
-            onChangeText={(text) => setCity(text)} value={city}
-            keyboardType={'email-address'} 
-        />
-        <Input 
-            style={styles.input} 
-            placeholder={"Enter State ..."} 
-            onChangeText={(text) => setState(text)} value={state}
-            keyboardType={'email-address'} 
-        />
-        <Input 
-            style={styles.input} 
-            placeholder={"Insert Profile Image Link..."} 
-            onChangeText={(text) => setProPic(text)} value={proPic}
-            keyboardType={'email-address'} 
-        />
-        <View style={styles.realtorBool}>
-            <Text >Realtor?</Text>
-            <Switch
-                label={"Realtor?"}
-                trackColor={{ false: "#767577", true: "#8f4c00" }}
-                thumbColor={realtor ? "#94ff57" : "#f4f3f4"}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={toggleSwitch}
-                value={realtor}
+    <KeyboardAvoidingView behavior="padding">    
+        <ScrollView>
+            <View style={styles.container}>
+                <Heading style={styles.title}>Please Sign Up</Heading>
+                <Error error={" "} />
+            </View>
+                <Input 
+                    style={styles.input} 
+                    placeholder={"Enter First Name ..."} 
+                    onChangeText={(text) => setFirstName(text)} value={firstName}
                 />
-        </View>
-        <LoginScreenRegButton title={"Register"} style={styles.loginButton} onPress={() => {handleSubmit(); navigation.navigate('Login')}} />
-        <QuickHomeButton title={"Return To Login"} onPress={() => {navigation.goBack()}}/>
+                <Input 
+                    style={styles.input} 
+                    placeholder={"Enter Last Name ..."} 
+                    onChangeText={(text) => setLastName(text)} value={lastName}
+                />
+                <Input 
+                    style={styles.input} 
+                    placeholder={"Enter E-mail..."} 
+                    onChangeText={(text) => setEmail(text)} value={email}
+                    keyboardType={'email-address'} 
+                />
+                <Input 
+                    style={styles.input} 
+                    placeholder={"Enter Password..."}
+                    onChangeText={(text) => setPassword(text)} value={password}
+                    secureTextEntry
+                />
+                <Input 
+                    style={styles.input} 
+                    placeholder={"Enter City"} 
+                    onChangeText={(text) => setCity(text)} value={city}
+                    keyboardType={'email-address'} 
+                />
+                <Input 
+                    style={styles.input} 
+                    placeholder={"Enter State ..."} 
+                    onChangeText={(text) => setState(text)} value={state}
+                    keyboardType={'email-address'} 
+                />
+                <Input 
+                    style={styles.input} 
+                    placeholder={"Insert Profile Image Link..."} 
+                    onChangeText={(text) => setProPic(text)} value={proPic}
+                    keyboardType={'email-address'} 
+                />
+            <View style={styles.realtorBool}>
+                <Text >Realtor?</Text>
+                <Switch
+                    label={"Realtor?"}
+                    trackColor={{ false: "#767577", true: "#8f4c00" }}
+                    thumbColor={realtor ? "#94ff57" : "#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={toggleSwitch}
+                    value={realtor}
+                    />
+            </View>
+            <View style={styles.btnContainer}>
+                <LoginScreenRegButton title={"Register"} style={styles.loginButton} onPress={() => {handleSubmit(); navigation.navigate('Login')}} />
+                <QuickHomeButton title={"Return To Login"} onPress={() => {navigation.goBack()}}/>
+            </View>
+        </ScrollView>
     </KeyboardAvoidingView>
-    </ScrollView>
-    </TouchableWithoutFeedback>
     );
 }
   
@@ -116,6 +115,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 100,
     padding: 20,
+    alignItems: 'center',
+    justifyContent: "center"
+  },
+  btnContainer: {
+    flex: 1,
+    padding: 15,
     alignItems: 'center',
     justifyContent: "center"
   },

@@ -1,15 +1,15 @@
-import React, { Component, useState } from 'react'
-import { ActivityIndicator, Text, View, StyleSheet, Image, SafeAreaView,
-    ScrollView, ImageBackground, Animated, useWindowDimensions, TouchableOpacity, Linking} from 'react-native'
-import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
+import React, { useState } from 'react'
+import { Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native'
+import { Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 import Input from './Input'
 
 export default function CommentList({listId, comments, realtor, address, price, bed, bath, phone}) {
 
     const [comment, setComment] = useState('')
-    const [newComment, setNewComment] = useState(false)
+    const [toggleComBox, setToggleComBox] = useState(false)
 
     const handleComment = () => {
+        if (comment !== '') {
         const commentPost = {
             method: "POST",
             headers: {
@@ -25,8 +25,12 @@ export default function CommentList({listId, comments, realtor, address, price, 
         fetch(`http://10.0.0.113:3000/api/v1/comments`, commentPost)
             .then((response) => response.json())
             .then((json) => comments.push(json))
-            .then(setNewComment(false))
+            .then((json) => console.log(json))
             .catch((error) => console.error(error))
+            setToggleComBox(!toggleComBox)
+        } else {
+            alert("You didn't enter a comment")
+        }
     }
 
     return (
@@ -51,8 +55,9 @@ export default function CommentList({listId, comments, realtor, address, price, 
                             </Left>
                 }
             </ScrollView>
-            {newComment &&
+            {toggleComBox &&
                 <ScrollView >
+                    
                 <Body style={styles.newForm} >
                    <Input style={styles.inputOverRide} onChangeText={(text) => setComment(text)} value={comment}/>
                    <TouchableOpacity onPress={() => handleComment()}>
@@ -62,7 +67,7 @@ export default function CommentList({listId, comments, realtor, address, price, 
                 </ScrollView>
             }
             <Right style={styles.right}>
-                <TouchableOpacity onPress={() => {setNewComment(!newComment)}}>
+                <TouchableOpacity onPress={() => {setToggleComBox(!toggleComBox)}}>
                     <Icon type="Ionicons" name="md-add-circle-outline" style={{fontSize: 30, color: "green"}} />
                 </TouchableOpacity>
             </Right>

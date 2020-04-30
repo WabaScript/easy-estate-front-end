@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 import { Icon } from 'native-base'
-import MainFeedContainer from "../containers/MainFeedContainer";
+import ListingsContainer from "../containers/ListingsContainer";
 
 function HomeScreen() {
     return (
-       <MainFeedContainer/>
+       <ListingsContainer/>
     );
 }
 export default HomeScreen;
