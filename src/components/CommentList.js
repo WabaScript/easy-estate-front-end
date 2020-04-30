@@ -8,7 +8,7 @@ export default function CommentList({listId, comments, realtor, address, price, 
     const [comment, setComment] = useState('')
     const [toggleComBox, setToggleComBox] = useState(false)
 
-    const handleComment = () => {
+    const handleComment = async () => {
         if (comment !== '') {
         const commentPost = {
             method: "POST",
@@ -22,12 +22,10 @@ export default function CommentList({listId, comments, realtor, address, price, 
                     content: comment
                 })
         }
-        fetch(`http://10.0.0.113:3000/api/v1/comments`, commentPost)
-            .then((response) => response.json())
-            .then((json) => comments.push(json))
-            .then((json) => console.log(json))
-            .catch((error) => console.error(error))
-            setToggleComBox(!toggleComBox)
+        const response = await fetch(`http://10.0.0.113:3000/api/v1/comments`, commentPost)
+        const body = await response.json()
+        comments.push(body)
+        setToggleComBox(!toggleComBox)
         } else {
             alert("You didn't enter a comment")
         }

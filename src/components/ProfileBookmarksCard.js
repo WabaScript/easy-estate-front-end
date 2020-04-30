@@ -1,5 +1,5 @@
-import React, { Component, useRef, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, ImageBackground, Animated, useWindowDimensions } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, } from "react-native";
 import { Icon, Container, Content, Card, CardItem } from 'native-base'
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { LinearGradient } from 'expo-linear-gradient';
