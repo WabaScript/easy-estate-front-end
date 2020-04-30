@@ -1,7 +1,6 @@
 import React, { Component, useState, useEffect, useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, KeyboardAvoidingView, KeyboardAvoidingViewBase } from "react-native";
 import {Context} from '../components/Store'
-
 import { Icon } from 'native-base'
 import NewListingForm from "../components/NewListingForm";
 
@@ -29,18 +28,14 @@ function NewListingScreen({navigation}) {
 
 
     return (
-        <View style={styles.container}>
-            <Text>New Listing Screen!</Text>
-            <NewListingForm navigation={navigation} submitListing={submitListing}/>
-        </View>
-        
+        <NewListingForm navigation={navigation} submitListing={submitListing}/>
     );
 }
 export default NewListingScreen;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        padding: 10,
         alignItems: 'center',
         justifyContent: 'center'
     }
