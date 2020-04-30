@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect, useContext } from "react";
 import { View, Text, StyleSheet, KeyboardAvoidingView, KeyboardAvoidingViewBase } from "react-native";
-import {Context} from '../components/Store'
+import {Context} from '../actions/Store'
 import { Icon } from 'native-base'
 import NewListingForm from "../components/NewListingForm";
 
@@ -28,7 +28,12 @@ function NewListingScreen({navigation}) {
 
 
     return (
-        <NewListingForm navigation={navigation} submitListing={submitListing}/>
+        <>
+            {state.currentUser ?
+            <NewListingForm navigation={navigation} submitListing={submitListing}/>
+            :
+            <Text>Please Login to Submit a Listing</Text>}
+        </>
     );
 }
 export default NewListingScreen;

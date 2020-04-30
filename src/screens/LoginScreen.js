@@ -6,7 +6,7 @@ import LoginScreenButton from '../components/LoginScreenButton';
 import LoginScreenRegButton from '../components/LoginScreenRegButton';
 import QuickHomeButton from '../components/QuickHomeButton';
 import Error from '../components/Error';
-import {Context} from '../components/Store'
+import {Context} from '../actions/Store'
  
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('')

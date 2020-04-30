@@ -1,3 +1,5 @@
+import {AsyncStorage} from 'react-native';
+
 const Reducer = (state, action) => {
     switch (action.type) {
         case 'SET_LISTINGS':
@@ -11,9 +13,12 @@ const Reducer = (state, action) => {
                 listings: state.listings.concat(action.payload)
             };
         case 'SET_CURRENT_USER':
+            if (action.payload !== null) {
+                AsyncStorage.setItem('storedUserId', `${action.payload.id}`);
+              }
             return {
                 ...state,
-                currentUser: action.payload
+                currentUser: action.payload,
             }
         case 'REMOVE_LISTING':
             return {

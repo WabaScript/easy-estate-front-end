@@ -1,10 +1,10 @@
 import React, {createContext, useReducer} from "react";
 import Reducer from './Reducer'
 
-
 const initialState = {
     listings: [],
     currentUser: null,
+    sessionId: null,
     users: [],
     error: null
 };
