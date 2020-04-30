@@ -44,11 +44,8 @@ export default function RegistrationScreen({ navigation }) {
 
 
   return (
-        <ScrollView >
-            <KeyboardAvoidingView 
-                contentContainerStyle={styles.container}
-                keyboardVerticalOffset={10} 
-                behavior={"position"}>
+    <KeyboardAvoidingView behavior="padding">    
+        <ScrollView>
             <View style={styles.container}>
                 <Heading style={styles.title}>Please Sign Up</Heading>
                 <Error error={" "} />
@@ -104,11 +101,12 @@ export default function RegistrationScreen({ navigation }) {
                     value={realtor}
                     />
             </View>
-            <LoginScreenRegButton title={"Register"} style={styles.loginButton} onPress={() => {handleSubmit(); navigation.navigate('Login')}} />
-            <QuickHomeButton title={"Return To Login"} onPress={() => {navigation.goBack()}}/>
-        </KeyboardAvoidingView>
-    </ScrollView>
- 
+            <View style={styles.btnContainer}>
+                <LoginScreenRegButton title={"Register"} style={styles.loginButton} onPress={() => {handleSubmit(); navigation.navigate('Login')}} />
+                <QuickHomeButton title={"Return To Login"} onPress={() => {navigation.goBack()}}/>
+            </View>
+        </ScrollView>
+    </KeyboardAvoidingView>
     );
 }
   
@@ -117,6 +115,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 100,
     padding: 20,
+    alignItems: 'center',
+    justifyContent: "center"
+  },
+  btnContainer: {
+    flex: 1,
+    padding: 15,
     alignItems: 'center',
     justifyContent: "center"
   },
