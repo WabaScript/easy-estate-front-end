@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native'
 import { Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 import Input from './Input'
+import {Context} from '../actions/Store'
 
 export default function CommentList({listId, comments, realtor, address, price, bed, bath, phone}) {
 
     const [comment, setComment] = useState('')
     const [toggleComBox, setToggleComBox] = useState(false)
+    const [state, dispatch] = useContext(Context)
 
     const handleComment = async () => {
         if (comment !== '') {
@@ -17,7 +19,7 @@ export default function CommentList({listId, comments, realtor, address, price, 
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                    user_id: 5,
+                    user_id: state.currentUser.id,
                     listing_id: listId,
                     content: comment
                 })

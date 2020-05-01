@@ -1,6 +1,7 @@
 import React, { Component, useContext, useEffect } from "react";
 import { View, Text, StyleSheet, AsyncStorage } from "react-native";
 import {Context} from '../actions/Store'
+import QuickHomeButton from '../components/QuickHomeButton'
 
 
 function SplashScreen({navigation}) {
@@ -35,6 +36,7 @@ function SplashScreen({navigation}) {
         {state.currentUser ? navigation.navigate('MainStack') : navigation.navigate('Login')}
         <View style={styles.container}>
             <Text>I'm Splashy!</Text>
+            <QuickHomeButton title={"Quick Home View"} onPress={() => {navigation.navigate('MainStack')}}/>
         </View>
         </>
     );
