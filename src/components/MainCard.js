@@ -1,13 +1,13 @@
-import React, { Component, useRef, useState } from 'react'
+import React, { Component, useRef, useState, useContext } from 'react'
 import {  Text, View, StyleSheet, ScrollView, ImageBackground, Animated, useWindowDimensions, TouchableOpacity} from 'react-native'
-import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
+import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Content } from 'native-base'
 import ListingInfoCard from './ListingInfoCard';
-
+import {Context} from '../actions/Store'
 export default function MainCard({phone, listId, thumb, images, realtor, address, price, bed, bath, updatedDate, cityAndState, features, neighborhood, zip, sqrFoot, comments}) {
 
+    const [state, dispatch] = useContext(Context)
     const scrollX = useRef(new Animated.Value(0)).current;
     const { width: windowWidth } = useWindowDimensions();
-    const [userId, setUserId] = useState('')
 
     const handleBookmark = () => {
         const followListingPost = {
@@ -17,7 +17,7 @@ export default function MainCard({phone, listId, thumb, images, realtor, address
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                    follower_id: 5,
+                    follower_id: state.currentUser.id,
                     listing_id: listId
                 })
         }
