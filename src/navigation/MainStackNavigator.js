@@ -29,7 +29,7 @@ function MainStackNavigator({ navigation }) {
             headerBackTitle="🏠"  
             options={({navigation}) => ({ 
                 headerLeft: () => (
-                    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                    <TouchableOpacity onPress={() => navigation.push("AppTabMain", {screen: 'Home'})}>
                       <Icon type="AntDesign" name="home" style={{paddingLeft:10}} />
                     </TouchableOpacity>
                 ),

@@ -1,13 +1,15 @@
-import React, { useState, useContext } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, KeyboardAvoidingView, } from "react-native";
+import React, { useState, useContext, useRef } from "react";
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView, KeyboardAvoidingView, Image, Animated, ImageBackground } from "react-native";
 import Input from '../components/Input';
-import { Icon, Content } from 'native-base'
 import Heading from '../components/Heading'
 import Error from '../components/Error';
-import { TextInput } from "react-native-gesture-handler";
 import LoginScreenRegButton from "./LoginScreenRegButton";
 import QuickHomeButton from './QuickHomeButton'
 import {Context} from '../actions/Store'
+import * as ImagePicker from 'expo-image-picker';
+import { FlatList } from "react-native-gesture-handler";
+import { Icon } from 'native-base'
+
 
 const NewListingForm = ({ navigation, submitListing }) => {
     const [state, dispatch] = useContext(Context)
@@ -24,7 +26,7 @@ const NewListingForm = ({ navigation, submitListing }) => {
     const [sqr_foot, setSqr_foot] = useState("");
     const [default_image, setDefault_image] = useState('');
     const [p_contact, setP_contact] = useState("");
-    const [owner_id, setOwner_id] = useState("");
+    const [imageArray, setImageArray] = useState([]);
 
     // const onChangeAddress = addressValue => setAddress(addressValue)
 
@@ -41,16 +43,61 @@ const NewListingForm = ({ navigation, submitListing }) => {
         sqr_foot: sqr_foot,
         default_image: [default_image],
         p_contact: p_contact,
-        owner_id: state.currentUser.id
+        owner_id: state.currentUser.id,
+        images: imageArray.map(i => {return (i.uri)})
     }
 
+    const handleAddPhotos = () => {
+        ImagePicker.getCameraRollPermissionsAsync()
+        if (imageArray.length === 0) { 
+            ImagePicker.launchImageLibraryAsync().then(img => !img.cancelled && setImageArray([img]))
+        }else{
+            ImagePicker.launchImageLibraryAsync().then(img => !img.cancelled && setImageArray(prevState => ([img, ...prevState])))
+        }
+    }
+
+    const handleCamera = () => {
+        ImagePicker.getCameraPermissionsAsync()
+        ImagePicker.launchCameraAsync().then(img => setImageArray(prevState => ([img, ...prevState])))
+    }
+   
+
+     console.log(imageArray)
+  
+
     return (
+        <>
         <KeyboardAvoidingView behavior="padding">
-            <ScrollView contentContainerStyle={{paddingBottom: 30}}>
-            <View style={styles.container}>
-                <Heading style={styles.title}>Submit Your Listing</Heading>
-                <Error error={" "} />
-            
+            {imageArray.length > 0 ?
+            <ScrollView horizontal pagingEnabled>
+                {imageArray.map((i, index) => {
+                    return (
+                        <Image
+                        key={index}
+                        style={styles.image}
+                        source={{ uri: i.uri }}
+                    />    
+                )})}
+            </ScrollView>
+            :
+            <Image
+                style={styles.image}
+                // source={require('../assets/no-img.png')}
+            />
+            }
+
+            <ScrollView contentContainerStyle={{paddingBottom: 150}}>
+                <View style={styles.container}>
+                    <Heading style={styles.title}>Submit Your Listing</Heading>
+                    <Error error={" "} />
+                <View style={styles.uploadIcons} >
+                    <TouchableOpacity onPress={handleAddPhotos} style={{paddingRight: 50}}>
+                        <Icon type="Entypo" name="image" />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={handleCamera}>
+                        <Icon type="Entypo" name="camera"/>
+                    </TouchableOpacity>
+                </View>
                 <Input 
                     placeholder="Address" 
                     style={styles.input} 
@@ -111,22 +158,19 @@ const NewListingForm = ({ navigation, submitListing }) => {
                     style={styles.input} 
                     onChangeText={(text) => setP_contact(text)} value={p_contact}
                 />
-                <Input 
-                    placeholder="Owner_id" 
-                    style={styles.input} 
-                    onChangeText={(text) => setOwner_id(text)} value={owner_id}
-                />
                 </View>
                 <View style={styles.btnContainer}>
                     <LoginScreenRegButton 
                         title={"Submit Listing"} 
                         style={styles.submitButton} 
-                        onPress={() => {submitListing(newListing); navigation.push("AppTabMain", {screen: 'Home'})}} 
+                        onPress={() => {submitListing(newListing); }} 
+                        // navigation.push("AppTabMain", {screen: 'Home'})
                     />
                     <QuickHomeButton title={"Go Back"} onPress={() => {navigation.goBack()}}/>
                 </View>
             </ScrollView>
         </KeyboardAvoidingView>
+        </>
     );
 }
 export default NewListingForm;
@@ -138,6 +182,11 @@ const styles = StyleSheet.create({
         padding: 20,
         alignItems: 'center',
         justifyContent: "center"
+      },
+      uploadIcons: {
+        flexDirection: 'row', 
+        marginHorizontal: 10, 
+        justifyContent: 'space-evenly'
       },
     btnContainer: {
         flex: 1,
@@ -162,7 +211,11 @@ const styles = StyleSheet.create({
           marginVertical: 10
       },
       submitButton: {
-          marginVertical: 10
+          marginBottom: 10
       },
+      image: {
+          width: 100, 
+          height: 100
+      }
       
 });

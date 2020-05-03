@@ -32,10 +32,14 @@ export default function MainCard({phone, listId, thumb, images, realtor, address
             <Card>
                 <CardItem>
                     <Left>
+                        <TouchableOpacity onPress={() => {}}>
                         { thumb && <Thumbnail source={{uri: thumb}} /> }
+                        </TouchableOpacity>
                         <Body>
+                    
                             <Text>{realtor}</Text>
                             <Text note>{updatedDate}</Text>
+                   
                         </Body>
                     </Left>
                     <Right>
