@@ -19,7 +19,7 @@ function SplashScreen({navigation}) {
         .then(response => response.json())
         .then(response => {
           if (response.errors){
-            alert(response.errors)
+            console.log(response.errors)
           } else {
               dispatch({ type: 'SET_CURRENT_USER', payload: response })
           }

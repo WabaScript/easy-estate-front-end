@@ -15,6 +15,7 @@ function ProfileContainer() {
 
     // adding the empt array arg at the end simulates a true componentdidmount, rendering only on initial mount
     useEffect(() => {
+        state.currentUser &&
         fetch(`http://10.0.0.113:3000/api/v1/users/${state.currentUser.id}`)
           .then((response) => response.json())
           .then((json) => setUser(json))
@@ -24,6 +25,8 @@ function ProfileContainer() {
       // putting a state var will tell the effect to only take place when the state var is updated, ex. users
 
     return (
+        <>
+        {state.currentUser &&
         <>
         {isLoading ? <ActivityIndicator style={styles.indicator}/> : (
         <>
@@ -54,6 +57,8 @@ function ProfileContainer() {
         </Container>
         </>
         )}
+        </>
+        }
         </>
     );
 }

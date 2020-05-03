@@ -9,6 +9,7 @@ function NewListingScreen({navigation}) {
     const [state, dispatch] = useContext(Context);
     
     function submitListing(newListing) {
+        console.log("TESTING", newListing)
         const listingPost= {
             method: "POST",
             headers: {

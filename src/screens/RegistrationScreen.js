@@ -8,7 +8,7 @@ import Error from '../components/Error';
 import {Context} from '../actions/Store'
  
 export default function RegistrationScreen({ navigation }) {
-    const [firstName, setFirstName] = useState("");
+    const [firstName, setFirstName] = useState(null);
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -41,14 +41,23 @@ export default function RegistrationScreen({ navigation }) {
         }
         fetch(`http://10.0.0.113:3000/api/v1/users`, newUserPost)
             .then((response) => response.json())
-            .then((json) => {
+            .then((json) => { 
+                if (json.errors){alert(json.errors)
+                }else{
                 dispatch({type: "SET_CURRENT_USER", payload: json})
+                alert("Thank You for Registering!")
+                navigation.navigate("MainStack")
+                }
             })
-            .then(alert("Thank You for Registering!"))
-            .then(navigation.navigate("MainStack"))
-            .catch((error) => console.error(error))
+            
     }
-
+    // if (response.errors){
+    //     alert(response.errors)
+    //   } else {
+    //     dispatch({type: "SET_CURRENT_USER", payload: response})
+    //     navigation.navigate("MainStack")
+    //   }
+    // })
 
   return (
     <KeyboardAvoidingView behavior="padding">    

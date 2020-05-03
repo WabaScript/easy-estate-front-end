@@ -5,6 +5,7 @@ import NewListingScreen from '../screens/NewListingScreen'
 import SearchScreen from '../screens/SearchScreen'
 import HomeScreen from '../screens/HomeScreen'
 
+
 const Tab = createBottomTabNavigator();
 
 

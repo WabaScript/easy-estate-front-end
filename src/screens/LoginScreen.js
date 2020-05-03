@@ -40,6 +40,8 @@ export default function LoginScreen({ navigation }) {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <View style={styles.container}>
+      {!state.currentUser ? 
+        <>
         <Heading style={styles.title}>Welcome Home</Heading>
         <Error error={" "} />
         <Input 
@@ -58,6 +60,14 @@ export default function LoginScreen({ navigation }) {
         <LoginScreenButton title={"LOGIN"} style={styles.loginButton} onPress={handleLoginSubmit}/>
         <LoginScreenRegButton title={"Register"} style={styles.registerButton} onPress={() => {navigation.navigate('Registration')}} />
         <QuickHomeButton title={"Quick Home View"} onPress={() => {navigation.navigate('MainStack')}}/>
+        </>
+      :
+      <>
+      <Heading style={styles.title}>Hey You're Already Logged In!</Heading>
+      <Text style={styles.title}> Hit the button below to go back home</Text>
+      <QuickHomeButton title={"Quick Home View"} onPress={() => {navigation.navigate('MainStack')}}/>
+      </>
+      }
     </View>
     </TouchableWithoutFeedback>
     );
