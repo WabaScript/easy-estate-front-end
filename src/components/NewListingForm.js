@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef } from "react";
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView, KeyboardAvoidingView, Image, Animated, ImageBackground } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, KeyboardAvoidingView, Image, Animated, ImageBackground, ActivityIndicator } from "react-native";
 import Input from '../components/Input';
 import Heading from '../components/Heading'
 import Error from '../components/Error';
@@ -9,10 +9,12 @@ import {Context} from '../actions/Store'
 import * as ImagePicker from 'expo-image-picker';
 import { FlatList } from "react-native-gesture-handler";
 import { Icon } from 'native-base'
+const defListImg = 'https://lh3.googleusercontent.com/proxy/6V7nJRhu-qKZ4cgvQAxcK54gR5bB9YF3de78YP2q4U_fTugh7PU3dSi9GGnIG6hg3dQ04L8fpIdxZpERzAwhdze8eS-iTW_aPPxOfnnQRIrNoNdxq3EAHV4HetrBkgy0rQrcEbheGLmcbwxdeS-T2bAkF8nuJjplMsbZ7q6XXJFx'
 
 
 const NewListingForm = ({ navigation, submitListing }) => {
     const [state, dispatch] = useContext(Context)
+    const [loading, setLoading] = useState(false)
 
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
@@ -24,7 +26,7 @@ const NewListingForm = ({ navigation, submitListing }) => {
     const [bed, setBed] = useState("");
     const [bath, setBath] = useState("");
     const [sqr_foot, setSqr_foot] = useState("");
-    const [default_image, setDefault_image] = useState('');
+    const [default_image, setDefault_image] = useState("");
     const [p_contact, setP_contact] = useState("");
     const [imageArray, setImageArray] = useState([]);
 
@@ -41,34 +43,30 @@ const NewListingForm = ({ navigation, submitListing }) => {
         bed: bed,
         bath: bath,
         sqr_foot: sqr_foot,
-        default_image: [default_image],
+        default_image: default_image ? [default_image] : [defListImg],
         p_contact: p_contact,
         owner_id: state.currentUser.id,
-        images: imageArray.map(i => {return (i.uri)})
+        images: imageArray.map(i => {return (i.base64)})
     }
 
     const handleAddPhotos = () => {
         ImagePicker.getCameraRollPermissionsAsync()
         if (imageArray.length === 0) { 
-            ImagePicker.launchImageLibraryAsync().then(img => !img.cancelled && setImageArray([img]))
+            ImagePicker.launchImageLibraryAsync({base64: true}).then(img => !img.cancelled && setImageArray([img]))
         }else{
-            ImagePicker.launchImageLibraryAsync().then(img => !img.cancelled && setImageArray(prevState => ([img, ...prevState])))
+            ImagePicker.launchImageLibraryAsync({base64: true}).then(img => !img.cancelled && setImageArray(prevState => ([img, ...prevState])))
         }
     }
 
     const handleCamera = () => {
         ImagePicker.getCameraPermissionsAsync()
-        ImagePicker.launchCameraAsync().then(img => setImageArray(prevState => ([img, ...prevState])))
+        ImagePicker.launchCameraAsync({base64: true}).then(img => setImageArray(prevState => ([img, ...prevState])))
     }
-   
-
-     console.log(imageArray)
-  
 
     return (
         <>
         <KeyboardAvoidingView behavior="padding">
-            {imageArray.length > 0 ?
+            {imageArray.length > 0 &&
             <ScrollView horizontal pagingEnabled>
                 {imageArray.map((i, index) => {
                     return (
@@ -79,11 +77,6 @@ const NewListingForm = ({ navigation, submitListing }) => {
                     />    
                 )})}
             </ScrollView>
-            :
-            <Image
-                style={styles.image}
-                // source={require('../assets/no-img.png')}
-            />
             }
 
             <ScrollView contentContainerStyle={{paddingBottom: 150}}>
@@ -163,9 +156,9 @@ const NewListingForm = ({ navigation, submitListing }) => {
                     <LoginScreenRegButton 
                         title={"Submit Listing"} 
                         style={styles.submitButton} 
-                        onPress={() => {submitListing(newListing); }} 
-                        // navigation.push("AppTabMain", {screen: 'Home'})
+                        onPress={() => {submitListing(newListing); setLoading(!loading)}}
                     />
+                    {loading && <ActivityIndicator style={{padding:10}}/>}
                     <QuickHomeButton title={"Go Back"} onPress={() => {navigation.goBack()}}/>
                 </View>
             </ScrollView>
@@ -216,6 +209,11 @@ const styles = StyleSheet.create({
       image: {
           width: 100, 
           height: 100
-      }
-      
+      },
+      speacialIn: {
+        backgroundColor: "lightgrey",
+        width: '100%',
+        padding: 15,
+        borderRadius: 10
+          },
 });

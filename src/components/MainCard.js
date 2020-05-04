@@ -64,7 +64,10 @@ export default function MainCard({phone, listId, thumb, images, realtor, address
                         {images && images.map((image, imageIndex) => {
                             return (
                                 <View style={{ width: windowWidth, height: 300 }} key={imageIndex} >
-                                    <ImageBackground source={{ uri: image }} style={styles.card} />
+                                    {image.indexOf['localhost'] !== -1 ?
+                                    <ImageBackground source={{ uri: image.replace('localhost', "10.0.0.113") }} style={styles.card} />
+                                    :
+                                    <ImageBackground source={{ uri: image}} style={styles.card} />}
                                 </View>
                             );
                         })}

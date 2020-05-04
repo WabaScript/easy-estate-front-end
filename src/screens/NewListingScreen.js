@@ -9,7 +9,6 @@ function NewListingScreen({navigation}) {
     const [state, dispatch] = useContext(Context);
     
     function submitListing(newListing) {
-        console.log("TESTING", newListing)
         const listingPost= {
             method: "POST",
             headers: {
@@ -20,11 +19,16 @@ function NewListingScreen({navigation}) {
         }
         fetch(`http://10.0.0.113:3000/api/v1/listings`, listingPost)
             .then((response) => response.json())
-            .then((json) => console.log(json))
             .then((json) => { 
-                dispatch({type: "ADD_LISTINGS", payload: json})
+                if (!json.errors){
+                    dispatch({type: "ADD_LISTINGS", payload: json});
+                    navigation.push("AppTabMain", {screen: 'Home'})
+                }else{
+                    navigation.push("AppTabMain", {screen: 'New Post'})
+                    alert("Something went wrong. Try again")
+                }
             })
-            .catch((error) => console.error(error))
+            .catch((error) => {console.error(error); alert("Something went wrong. Try again")})
     }
 
 

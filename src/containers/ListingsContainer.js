@@ -43,7 +43,7 @@ function ListingsContainer() {
                                 thumb={listing.owner.pro_pic} 
                                 phone={listing.p_contact}
                                 price={money(listing.price)} 
-                                images={listing.default_image} 
+                                images={listing.uploaded_images.length >= 1 ? listing.uploaded_images : listing.default_image} 
                                 address={listing.address}
                                 cityAndState={listing.city + ", " + listing.state}
                                 zip={listing.zipcode}
