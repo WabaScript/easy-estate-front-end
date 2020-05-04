@@ -33,7 +33,11 @@ function ProfileListings({ listings }) {
                         {listings.map((listing, listingIndex) => {
                             return (
                                 <View style={{ width: windowWidth, height: 300 }} key={listingIndex} >
-                                    <ImageBackground source={{ uri: listing.default_image[0] }} style={styles.card} />
+                                    <ImageBackground 
+                                        source={{ uri: listing.uploaded_images.length !== 0 ? 
+                                            listing.uploaded_images[0].replace('localhost', "10.0.0.113") : listing.default_image[0] }} 
+                                        style={styles.card} 
+                                        />
                                     <Text> {listing.address} {listing.city}, {listing.state} - {money(listing.price)} </Text>
                                 </View>
                             );
