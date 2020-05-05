@@ -1,5 +1,5 @@
 import React, { Component, useContext, useEffect } from "react";
-import { View, Text, StyleSheet, AsyncStorage } from "react-native";
+import { View, Text, StyleSheet, AsyncStorage, Image } from "react-native";
 import {Context} from '../actions/Store'
 import QuickHomeButton from '../components/QuickHomeButton'
 
@@ -35,7 +35,10 @@ function SplashScreen({navigation}) {
         <>
         {state.currentUser ? navigation.navigate('MainStack') : navigation.navigate('Login')}
         <View style={styles.container}>
-            <Text>I'm Splashy!</Text>
+            <Text>I'm a Splash Screen!</Text>
+            <View style={{justifyContent: 'center', alignItems: 'center', marginBottom: 10 }} >
+              <Image source={require('../../assets/houseIcon2.gif')} style={{width: 50, height: 50}}/>
+            </View>
             <QuickHomeButton title={"Quick Home View"} onPress={() => {navigation.navigate('MainStack')}}/>
         </View>
         </>

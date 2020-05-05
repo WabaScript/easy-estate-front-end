@@ -1,5 +1,5 @@
 import React, { Component, useState, useContext } from "react";
-import { View, Text, StyleSheet, KeyboardAvoidingView, ActivityIndicator, KeyboardAvoidingViewComponent } from "react-native";
+import { View, Text, StyleSheet, KeyboardAvoidingView, ActivityIndicator, Image } from "react-native";
 
 import { Icon, Container, Content } from 'native-base'
 import Input from '../components/Input'
@@ -40,12 +40,12 @@ function SearchScreen({navigation}) {
                     style={styles.input} 
                     onChangeText={(text) => {setSearchTerm(text); searchFilter(text)}} value={searchTerm}
                 />
-               <QuickHomeButton title={"Go Back"} onPress={() => {navigation.goBack()}}/>
+               <QuickHomeButton title={"Go Back"} onPress={() => {navigation.goBack()}} style={styles.submitButton}/>
                <>
             <KeyboardAvoidingView behavior="padding">
             {state.listings.length > 0 ?
             <Container styles={styles.container}>
-                <Content showsVerticalScrollIndicator={false} disableKBDismissScroll>
+                <Content showsVerticalScrollIndicator={false} disableKBDismissScroll style={{backgroundColor: '#f2f2f2'}}>
                     {filteredListings.map((listing, index) => {
                         return (
                             <MainCard 
@@ -69,13 +69,15 @@ function SearchScreen({navigation}) {
                             />
                         );
                     })}
+                    <View style={{justifyContent: 'center', alignItems: 'center', marginBottom: 40 }} >
+                        <Image source={require('../../assets/houseIcon2.gif')} style={{width: 50, height: 50}}/>
+                    </View>
                 </Content>
             </Container>
         : 
         <Text> There seems to have been a network issue, please try again </Text>} 
         </KeyboardAvoidingView>
         </>
-                
             </View>
 
        

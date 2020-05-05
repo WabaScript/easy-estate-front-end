@@ -9,8 +9,7 @@ import {Context} from '../actions/Store'
 import * as ImagePicker from 'expo-image-picker';
 import { FlatList } from "react-native-gesture-handler";
 import { Icon } from 'native-base'
-const defListImg = 'https://lh3.googleusercontent.com/proxy/6V7nJRhu-qKZ4cgvQAxcK54gR5bB9YF3de78YP2q4U_fTugh7PU3dSi9GGnIG6hg3dQ04L8fpIdxZpERzAwhdze8eS-iTW_aPPxOfnnQRIrNoNdxq3EAHV4HetrBkgy0rQrcEbheGLmcbwxdeS-T2bAkF8nuJjplMsbZ7q6XXJFx'
-
+import {defListImg} from '../actions/Fetches'
 
 const NewListingForm = ({ navigation, submitListing }) => {
     const [state, dispatch] = useContext(Context)

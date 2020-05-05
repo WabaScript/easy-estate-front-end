@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import {View, StyleSheet, Text, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {View, StyleSheet, Text, TouchableWithoutFeedback, Keyboard, Image} from 'react-native';
 import Heading from '../components/Heading';
 import Input from '../components/Input';
 import LoginScreenButton from '../components/LoginScreenButton';
@@ -65,6 +65,7 @@ export default function LoginScreen({ navigation }) {
       <>
       <Heading style={styles.title}>Hey You're Already Logged In!</Heading>
       <Text style={styles.title}> Hit the button below to go back home</Text>
+      <Image source={require('../../assets/houseicon.gif')} style={{width: 100, height: 100}}/>
       <QuickHomeButton title={"Quick Home View"} onPress={() => {navigation.navigate('MainStack')}}/>
       </>
       }
