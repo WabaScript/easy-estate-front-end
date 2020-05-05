@@ -2,9 +2,9 @@ import React, { Component, useEffect, useState, useContext } from "react";
 import { ActivityIndicator, View, Text, StyleSheet, Image } from "react-native";
 import MainCard from '../components/MainCard'
 import {Context} from '../actions/Store'
-
 import { Icon, Container, Content } from 'native-base'
 import { ScrollView } from "react-native-gesture-handler";
+import {Money} from '../actions/Fetches'
 
 function ListingsContainer() {
     const [isLoading, setLoading] = useState(true);
@@ -24,9 +24,9 @@ function ListingsContainer() {
       }, []);
       // putting a state var will tell the effect to only take place when the state var is updated, ex. listings
       
-      const money = (num) => {
-        return '$' + num.toFixed().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-      }
+    //   const money = (num) => {
+    //     return '$' + num.toFixed().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    //   }
 
     return (
         <>
@@ -46,7 +46,7 @@ function ListingsContainer() {
                                 realtor={listing.owner.first_name + listing.owner.last_name} 
                                 thumb={listing.owner.pro_pic} 
                                 phone={listing.p_contact}
-                                price={money(listing.price)} 
+                                price={Money(listing.price)} 
                                 images={listing.uploaded_images.length >= 1 ? listing.uploaded_images : listing.default_image} 
                                 address={listing.address}
                                 cityAndState={listing.city + ", " + listing.state}

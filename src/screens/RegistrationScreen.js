@@ -82,7 +82,7 @@ export default function RegistrationScreen({ navigation }) {
             <Input 
                 style={styles.input} 
                 placeholder={"Enter E-mail..."} 
-                onChangeText={(text) => setEmail(text)} value={email}
+                onChangeText={(text) => setEmail(text.toLowerCase())} value={email}
                 keyboardType={'email-address'} 
             />
             <Input 

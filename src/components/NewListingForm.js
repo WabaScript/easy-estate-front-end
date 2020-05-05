@@ -8,7 +8,7 @@ import QuickHomeButton from './QuickHomeButton'
 import {Context} from '../actions/Store'
 import * as ImagePicker from 'expo-image-picker';
 import { Icon } from 'native-base'
-import {defListImg} from '../actions/Fetches'
+import {defListImg, FormatPhoneNumber } from '../actions/Fetches'
 
 const NewListingForm = ({ navigation, submitListing }) => {
     const [state, dispatch] = useContext(Context)
@@ -60,6 +60,7 @@ const NewListingForm = ({ navigation, submitListing }) => {
 
     return (
         <>
+        {console.log(newListing)}
         <KeyboardAvoidingView behavior="padding">
             {imageArray.length > 0 &&
             <ScrollView horizontal pagingEnabled>
@@ -149,7 +150,7 @@ const NewListingForm = ({ navigation, submitListing }) => {
                 <Input 
                     placeholder="Contact Phone Number" 
                     style={styles.input} 
-                    onChangeText={(text) => setP_contact(text.replace(/[^0-9]/g, ''))} value={p_contact}
+                    onChangeText={(text) => setP_contact(text.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"))} value={FormatPhoneNumber(p_contact)}
                     keyboardType={'phone-pad'} 
                 />
                 </View>
