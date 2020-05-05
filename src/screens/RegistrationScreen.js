@@ -1,11 +1,13 @@
 import React, { useState, useContext } from 'react';
-import {View, StyleSheet, Text, ScrollView, KeyboardAvoidingView, Switch } from 'react-native';
+import {View, StyleSheet, Text, ScrollView, KeyboardAvoidingView, Switch, Picker, Button } from 'react-native';
 import Heading from '../components/Heading';
 import Input from '../components/Input';
 import LoginScreenRegButton from '../components/LoginScreenRegButton';
 import QuickHomeButton from '../components/QuickHomeButton';
 import Error from '../components/Error';
 import {Context} from '../actions/Store'
+import RegionButton from '../components/RegionButton'
+import RegionPicker from '../components/RegionPicker'
  
 export default function RegistrationScreen({ navigation }) {
     const [firstName, setFirstName] = useState(null);
@@ -14,8 +16,9 @@ export default function RegistrationScreen({ navigation }) {
     const [password, setPassword] = useState("");
     const [proPic, setProPic] = useState("");
     const [city, setCity] = useState("");
-    const [regionalState, setRegionalState] = useState("");
+    const [regionalState, setRegionalState] = useState("Select State...");
     const [realtor, setRealtor] = useState(false);
+    const [pickerToggle, setPickerToggle] = useState(false);
 
     const toggleSwitch = () => setRealtor(prevState => !prevState);
 
@@ -90,16 +93,23 @@ export default function RegistrationScreen({ navigation }) {
             />
             <Input 
                 style={styles.input} 
-                placeholder={"Enter City"} 
+                placeholder={"Enter City..."} 
                 onChangeText={(text) => setCity(text)} value={city}
                 keyboardType={'email-address'} 
             />
-            <Input 
-                style={styles.input} 
-                placeholder={"Enter State ..."} 
-                onChangeText={(text) => setRegionalState(text)} value={regionalState}
-                keyboardType={'email-address'} 
+            <RegionButton
+                style={styles.input}
+                title={regionalState} 
+                onPress={() => {setPickerToggle(!pickerToggle)}}
             />
+            { pickerToggle &&
+                <RegionPicker
+                    style={styles.input} 
+                    itemStyle={{marginVertical: 10, height: 100}}
+                    selectedValue={regionalState}
+                    onValueChange={(itemValue) => setRegionalState(itemValue)}
+                />
+            }
             <Input 
                 style={styles.input} 
                 placeholder={"Insert Profile Image Link..."} 
@@ -107,7 +117,7 @@ export default function RegistrationScreen({ navigation }) {
                 keyboardType={'email-address'} 
             />
             <View style={styles.realtorBool}>
-            <Text >Realtor?</Text>
+            <Text style={{color: '#a1a1a1'}}>Realtor?</Text>
                 <Switch
                     label={"Realtor?"}
                     trackColor={{ false: "#767577", true: "#8f4c00" }}
@@ -155,6 +165,7 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 10,
     justifyContent: 'space-between',
-    borderRadius: 10
-  },
+    borderRadius: 10,
+    marginVertical: 10
+  }
 });
