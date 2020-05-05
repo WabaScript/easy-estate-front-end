@@ -3,13 +3,17 @@ import {  Text, View, StyleSheet, ScrollView, ImageBackground, Animated, useWind
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Content } from 'native-base'
 import ListingInfoCard from './ListingInfoCard';
 import {Context} from '../actions/Store'
+
 export default function MainCard({phone, listId, thumb, images, realtor, address, price, bed, bath, updatedDate, cityAndState, features, neighborhood, zip, sqrFoot, comments}) {
 
     const [state, dispatch] = useContext(Context)
     const scrollX = useRef(new Animated.Value(0)).current;
     const { width: windowWidth } = useWindowDimensions();
+    const [follows, setFollows] = useState([])
 
     const handleBookmark = () => {
+        state.currentUser.followed_listings.forEach( list => {follows.push(list.id)})
+        console.log(follows)
         const followListingPost = {
             method: "POST",
             headers: {
@@ -21,9 +25,11 @@ export default function MainCard({phone, listId, thumb, images, realtor, address
                     listing_id: listId
                 })
         }
-        fetch(`http://10.0.0.113:3000/api/v1/follow_listings`, followListingPost)
+        follows.includes(listId) ? alert("You already follow this listing!")
+        : fetch(`http://10.0.0.113:3000/api/v1/follow_listings`, followListingPost)
             .then((response) => response.json())
             .then((json) => alert("Listing added to Bookmarks!"))
+            .then(follows.push(listId))
             .catch((error) => console.error(error))
     }
 

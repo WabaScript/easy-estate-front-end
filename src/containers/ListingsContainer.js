@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState, useContext } from "react";
-import { ActivityIndicator, View, Text, StyleSheet } from "react-native";
+import { ActivityIndicator, View, Text, StyleSheet, Image } from "react-native";
 import MainCard from '../components/MainCard'
 import {Context} from '../actions/Store'
 
@@ -30,10 +30,14 @@ function ListingsContainer() {
 
     return (
         <>
-        {isLoading ? <ActivityIndicator style={styles.indicator}/> : (
+        {isLoading ? 
+        <View style={styles.loadCon}>
+            <Image source={require('../../assets/houseicon.gif')} style={{width: 200, height: 200 }}/>
+        </View> 
+            : (
             state.listings.length > 0 ?
             <Container styles={styles.container}>
-                <Content showsVerticalScrollIndicator={false} disableKBDismissScroll>
+                <Content showsVerticalScrollIndicator={false} disableKBDismissScroll style={{backgroundColor: '#f2f2f2'}}>
                     {state.listings.map((listing, index) => {
                         return (
                             <MainCard 
@@ -69,8 +73,12 @@ export default ListingsContainer;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor:'white'
+        backgroundColor:'#f2f2f2'
     },
+    loadCon: {
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
     indicator: {
         paddingTop: 200
 

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
-
-import { Icon } from 'native-base'
 import ProfileContainer from "../containers/ProfileContainer";
 
 function ProfileScreen() {

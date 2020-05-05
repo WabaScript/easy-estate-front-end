@@ -1,7 +1,6 @@
-import React, { Component, useState, useEffect, useContext } from "react";
-import { View, Text, StyleSheet, KeyboardAvoidingView, KeyboardAvoidingViewBase } from "react-native";
+import React, { useState, useEffect, useContext } from "react";
+import { View, Text, StyleSheet } from "react-native";
 import {Context} from '../actions/Store'
-import { Icon } from 'native-base'
 import NewListingForm from "../components/NewListingForm";
 
 function NewListingScreen({navigation}) {
@@ -30,7 +29,6 @@ function NewListingScreen({navigation}) {
             })
             .catch((error) => {console.error(error); alert("Something went wrong. Try again")})
     }
-
 
     return (
         <>
