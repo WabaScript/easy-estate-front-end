@@ -36,7 +36,7 @@ function SearchScreen({navigation}) {
             {state.listings.length > 0 ?
             <Container styles={styles.container}>
                 <Content showsVerticalScrollIndicator={false} disableKBDismissScroll style={{backgroundColor: '#f2f2f2'}}>
-                    {filteredListings.map((listing, index) => {
+                    {searchTerm !== "" && filteredListings.map((listing, index) => {
                         return (
                             <MainCard 
                                 key={index}
