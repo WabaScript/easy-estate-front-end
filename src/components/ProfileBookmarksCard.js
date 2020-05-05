@@ -8,6 +8,13 @@ import ProfileListings from "../components/ProfileListings"
 
 function ProfileBookmarksCard({ listings, bookmarks }) {
    const [bookmarkToggle, setBookmarkToggle] = useState(true)
+//    const [listingsArr, setListingsArr] = useState(listings)
+
+//    deleteListing = (delList) => {
+//         fetch(`http://localhost:3000/listings/${delList.id}`, {method: "DELETE"} )
+//         let newArray =  listings.filter(listing => listing.id !== delList.id)
+//         setListingsArr(newArray)
+//     }
 
     return (
         <View>
