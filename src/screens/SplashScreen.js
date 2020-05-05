@@ -1,4 +1,4 @@
-import React, { Component, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { View, Text, StyleSheet, AsyncStorage, Image } from "react-native";
 import {Context} from '../actions/Store'
 import QuickHomeButton from '../components/QuickHomeButton'

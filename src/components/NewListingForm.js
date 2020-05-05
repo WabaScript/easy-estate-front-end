@@ -7,7 +7,6 @@ import LoginScreenRegButton from "./LoginScreenRegButton";
 import QuickHomeButton from './QuickHomeButton'
 import {Context} from '../actions/Store'
 import * as ImagePicker from 'expo-image-picker';
-import { FlatList } from "react-native-gesture-handler";
 import { Icon } from 'native-base'
 import {defListImg} from '../actions/Fetches'
 
@@ -50,11 +49,8 @@ const NewListingForm = ({ navigation, submitListing }) => {
 
     const handleAddPhotos = () => {
         ImagePicker.getCameraRollPermissionsAsync()
-        if (imageArray.length === 0) { 
-            ImagePicker.launchImageLibraryAsync({base64: true}).then(img => !img.cancelled && setImageArray([img]))
-        }else{
-            ImagePicker.launchImageLibraryAsync({base64: true}).then(img => !img.cancelled && setImageArray(prevState => ([img, ...prevState])))
-        }
+        ImagePicker.launchImageLibraryAsync({base64: true}).then(img => !img.cancelled && setImageArray(prevState => ([img, ...prevState])))
+
     }
 
     const handleCamera = () => {
@@ -109,6 +105,7 @@ const NewListingForm = ({ navigation, submitListing }) => {
                     placeholder="Zipcode" 
                     style={styles.input} 
                     onChangeText={(text) => setZipcode(text)} value={zipcode}
+                    keyboardType={'number-pad'} 
                 />
                 <Input 
                     placeholder="Neighborhood" 
@@ -119,6 +116,7 @@ const NewListingForm = ({ navigation, submitListing }) => {
                     placeholder="Price" 
                     style={styles.input} 
                     onChangeText={(text) => setPrice(text)} value={price}
+                    keyboardType={'number-pad'} 
                 />
                 <Input 
                     placeholder="Features" 
@@ -128,17 +126,20 @@ const NewListingForm = ({ navigation, submitListing }) => {
                 <Input 
                     placeholder="Bed" 
                     style={styles.input} 
-                    onChangeText={(text) => setBed(text)} value={bed}            
+                    onChangeText={(text) => setBed(text)} value={bed}  
+                    keyboardType={'number-pad'}           
                 />
                 <Input 
                     placeholder="Bath" 
                     style={styles.input} 
                     onChangeText={(text) => setBath(text)} value={bath}
+                    keyboardType={'number-pad'} 
                 />
                 <Input 
                     placeholder="Square Footage" 
                     style={styles.input} 
                     onChangeText={(text) => setSqr_foot(text)} value={sqr_foot}
+                    keyboardType={'number-pad'} 
                 />
                 <Input 
                     placeholder="Insert one default image link" 
@@ -148,7 +149,8 @@ const NewListingForm = ({ navigation, submitListing }) => {
                 <Input 
                     placeholder="Contact Phone Number" 
                     style={styles.input} 
-                    onChangeText={(text) => setP_contact(text)} value={p_contact}
+                    onChangeText={(text) => setP_contact(text.replace(/[^0-9]/g, ''))} value={p_contact}
+                    keyboardType={'phone-pad'} 
                 />
                 </View>
                 <View style={styles.btnContainer}>
