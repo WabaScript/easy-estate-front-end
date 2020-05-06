@@ -9,7 +9,7 @@ export default function RegionPicker({style, ...props}) {
         <Picker.Item label="Arizona" value="AZ" />
         <Picker.Item label="Arkansas" value="AR" />
         <Picker.Item label="California" value="CA" />
-        <Picker.Item label="Colardo" value="CO" />
+        <Picker.Item label="Colorado" value="CO" />
         <Picker.Item label="Connecticut" value="CT" />
         <Picker.Item label="Delaware" value="DE" />
         <Picker.Item label="District of Columbia" value="DC" />

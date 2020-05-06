@@ -38,7 +38,7 @@ function ProfileListings({ listings }) {
                                             listing.uploaded_images[0].replace('localhost', "10.0.0.113") : listing.default_image[0] }} 
                                         style={styles.card} 
                                         />
-                                    <Text> {listing.address} {listing.city}, {listing.state} - {listing.price ? money(listing.price) : "$0.00"} </Text>
+                                    <Text>          {listing.address} {listing.city}, {listing.state} - {listing.price ? money(listing.price) : "$0.00"} </Text>
                                 </View>
                             );
                         })}

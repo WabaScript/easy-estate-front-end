@@ -44,7 +44,7 @@ function SearchScreen({navigation}) {
                                 realtor={listing.owner.first_name + listing.owner.last_name} 
                                 thumb={listing.owner.pro_pic} 
                                 phone={listing.p_contact}
-                                price={money(listing.price)} 
+                                price={listing.price ? money(listing.price) : "$0.00"} 
                                 images={listing.uploaded_images.length >= 1 ? listing.uploaded_images : listing.default_image}
                                 address={listing.address}
                                 cityAndState={listing.city + ", " + listing.state}
