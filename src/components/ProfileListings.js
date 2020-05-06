@@ -16,7 +16,7 @@ function ProfileListings({ listings }) {
         {listings &&
             <Content showsVerticalScrollIndicator={false}>
                 <Card style={styles.card}>
-                <CardItem>
+                <CardItem style={styles.shadow}>
                     <ScrollView
                         horizontal={true}
                         pagingEnabled
@@ -44,7 +44,7 @@ function ProfileListings({ listings }) {
                         })}
                     </ScrollView>
                 </CardItem>
-                <CardItem style={styles.indicatorContainer}>
+                {/* <CardItem style={styles.indicatorContainer}>
                     {listings.map((listing, listingIndex) => {
                         const width = scrollX.interpolate({
                         inputRange: [
@@ -62,7 +62,7 @@ function ProfileListings({ listings }) {
                         />
                         );
                     })}
-                </CardItem>
+                </CardItem> */}
                 </Card>
                 
             </Content>
@@ -85,12 +85,27 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         overflow: "hidden",
         alignItems: "center",
-        justifyContent: "center"
-        },
+        justifyContent: "center",
+        backgroundColor: 'rgba(52, 52, 52, 0.0)',
+    },
     box: {
         width: '100%',
         padding: 20,
         borderRadius: 10,
         marginVertical: 10
+    },
+    shadow: {
+        backgroundColor: 'rgba(52, 52, 52, 0.0)',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 6,
+        },
+        shadowOpacity: 0.37,
+        shadowRadius: 7.49,
+        elevation: 12,
+    },
+    transparent: {
+        backgroundColor: 'rgba(52, 52, 52, 0.0)',
     }
 });
