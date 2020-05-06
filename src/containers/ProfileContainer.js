@@ -51,7 +51,7 @@ function ProfileContainer() {
                 colors={['#FFC694', '#A34C00', ]}
                 style={{ position: 'absolute', left: 0, right: 0, top: 0, height: 500 }}
             />
-            <Content>
+            <Content showsVerticalScrollIndicator={false}>
                     <ProfileBookmarksCard bookmarks={user.followed_listings} listings={user.listings}/>
             </Content>
         </Container>
@@ -76,5 +76,5 @@ const styles = StyleSheet.create({
       },
       loginButton: {
           marginVertical: 10
-      },
+      }
 });

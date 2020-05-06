@@ -52,14 +52,14 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-        paddingVertical: 50,
-        paddingHorizontal: 30
+        paddingVertical: 30,
+        paddingHorizontal: 30,
+        height: 450
       },
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
-
+        justifyContent: 'center'
     },
     box: {
         backgroundColor: "saddlebrown",
@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
         padding: 6,
         borderRadius: 10,
         marginRight: 15,
-
       },
       text: {
           fontSize: 20,

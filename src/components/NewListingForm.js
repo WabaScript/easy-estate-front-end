@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, KeyboardAvoidingView, Image, Animated, ImageBackground, ActivityIndicator } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, KeyboardAvoidingView, Image, Animated, ActivityIndicator } from "react-native";
 import Input from '../components/Input';
 import Heading from '../components/Heading'
 import Error from '../components/Error';
@@ -20,7 +20,7 @@ const NewListingForm = ({ navigation, submitListing }) => {
 
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
-    const [regionalState, setRegionalState] = useState("");
+    const [regionalState, setRegionalState] = useState("State");
     const [zipcode, setZipcode] = useState("");
     const [neighborhood, setNeighborhood] = useState("");
     const [price, setPrice] = useState("");
