@@ -46,7 +46,7 @@ function ListingsContainer() {
                                 realtor={listing.owner.first_name + listing.owner.last_name} 
                                 thumb={listing.owner.pro_pic} 
                                 phone={listing.p_contact}
-                                price={Money(listing.price)} 
+                                price={listing.price && Money(listing.price)} 
                                 images={listing.uploaded_images.length >= 1 ? listing.uploaded_images : listing.default_image} 
                                 address={listing.address}
                                 cityAndState={listing.city + ", " + listing.state}

@@ -64,7 +64,6 @@ const NewListingForm = ({ navigation, submitListing }) => {
 
     return (
         <>
-        {console.log(newListing)}
         <KeyboardAvoidingView behavior="padding">
             {imageArray.length > 0 &&
             <ScrollView horizontal pagingEnabled>
