@@ -58,6 +58,7 @@ function ListingsContainer() {
                                 sqrFoot={listing.sqrFoot}
                                 comments={listing.comments}
                                 updatedDate={listing.createdFormat}
+                                ownerId={listing.owner_id}
                             />
                         );
                     })}
