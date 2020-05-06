@@ -9,10 +9,14 @@ import {Context} from '../actions/Store'
 import * as ImagePicker from 'expo-image-picker';
 import { Icon } from 'native-base'
 import {defListImg, FormatPhoneNumber } from '../actions/Fetches'
+import RegionButton from '../components/RegionButton'
+import RegionPicker from '../components/RegionPicker'
 
 const NewListingForm = ({ navigation, submitListing }) => {
     const [state, dispatch] = useContext(Context)
     const [loading, setLoading] = useState(false)
+
+    const [pickerToggle, setPickerToggle] = useState(false);
 
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
@@ -97,11 +101,26 @@ const NewListingForm = ({ navigation, submitListing }) => {
                     style={styles.input} 
                     onChangeText={(text) => setCity(text)} value={city}
                 />
-                <Input 
+                {/* <Input 
                     placeholder="State" 
                     style={styles.input} 
                     onChangeText={(text) => setRegionalState(text)} value={regionalState}
-                />
+                /> */}
+                <View style={styles.input}>
+                    <RegionButton
+                        style={{width: 340}}
+                        title={regionalState} 
+                        onPress={() => {setPickerToggle(!pickerToggle)}}
+                    />
+                    { pickerToggle &&
+                    <RegionPicker
+                        style={styles.input} 
+                        itemStyle={{marginVertical: 10, height: 100}}
+                        selectedValue={regionalState}
+                        onValueChange={(itemValue) => setRegionalState(itemValue)}
+                    />
+                    }
+                </View>
                 <Input 
                     placeholder="Zipcode" 
                     style={styles.input} 
