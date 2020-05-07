@@ -35,7 +35,7 @@ export default function CommentList({listId, comments, realtor, address, price, 
 
     return (
         <>
-            <ScrollView horizontal={true} >
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 {comments.length > 0 ? 
                     comments.map((comment, commentIndex) => {
                         return (
