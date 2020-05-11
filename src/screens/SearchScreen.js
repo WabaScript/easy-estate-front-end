@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import { View, Text, StyleSheet, KeyboardAvoidingView, ActivityIndicator, Image } from "react-native";
-import { Icon, Container, Content } from 'native-base'
+import { View, Text, StyleSheet, KeyboardAvoidingView, Image } from "react-native";
+import { Container, Content } from 'native-base'
 import Input from '../components/Input'
 import {Context} from '../actions/Store'
 import QuickHomeButton from '../components/QuickHomeButton'
@@ -81,25 +81,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: "center"
       },
-      uploadIcons: {
-        flexDirection: 'row', 
-        marginHorizontal: 10, 
-        justifyContent: 'space-evenly'
-      },
-    btnContainer: {
-        flex: 1,
-        padding: 15,
-        alignItems: 'center',
-        justifyContent: "center"
-      },
-      btn: {
-        backgroundColor: "saddlebrown",
-        width: "100%",
-        alignItems: 'center',
-        justifyContent: "center",
-        padding: 30,
-        borderRadius: 10
-      },
       text: {
           fontSize: 20,
           fontWeight: '700',
@@ -111,8 +92,5 @@ const styles = StyleSheet.create({
       submitButton: {
           marginBottom: 10
       },
-      image: {
-          width: 100, 
-          height: 100
-      }
+
 });

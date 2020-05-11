@@ -3,28 +3,27 @@ import { View, Text, StyleSheet, AsyncStorage, Image } from "react-native";
 import {Context} from '../actions/Store'
 import QuickHomeButton from '../components/QuickHomeButton'
 
-
 function SplashScreen({navigation}) {
 
   const [state, dispatch] = useContext(Context);
 
   const AutoSignIn = () => {
     let storedUserId = AsyncStorage.getItem("storedUserId")
-      storedUserId.then(id => {
-        fetch(`http://10.0.0.113:3000/auto_login`, {
-          headers: {
-            "Authorization": parseInt(id)
-          }
-        })
-        .then(response => response.json())
-        .then(response => {
-          if (response.errors){
-            console.log(response.errors)
-          } else {
-              dispatch({ type: 'SET_CURRENT_USER', payload: response })
-          }
-        })
+    storedUserId.then(id => {
+      fetch(`http://10.0.0.113:3000/auto_login`, {
+        headers: {
+          "Authorization": parseInt(id)
+        }
       })
+      .then(response => response.json())
+      .then(response => {
+        if (response.errors){
+          console.log(response.errors)
+        } else {
+            dispatch({ type: 'SET_CURRENT_USER', payload: response })
+        }
+      })
+    })
   }
 
   useEffect(() => {
