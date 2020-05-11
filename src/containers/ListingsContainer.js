@@ -9,7 +9,6 @@ import {Money} from '../actions/Fetches'
 function ListingsContainer() {
     const [isLoading, setLoading] = useState(true);
    // const [listings, setListings] = useState([]);
-
     const [state, dispatch] = useContext(Context);
 
     // adding the empt array arg at the end simulates a true componentdidmount, rendering only on initial mount
@@ -23,10 +22,6 @@ function ListingsContainer() {
           .finally(() => setLoading(false));
       }, []);
       // putting a state var will tell the effect to only take place when the state var is updated, ex. listings
-      
-    //   const money = (num) => {
-    //     return '$' + num.toFixed().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-    //   }
 
     return (
         <>
@@ -58,6 +53,7 @@ function ListingsContainer() {
                                 sqrFoot={listing.sqrFoot}
                                 comments={listing.comments}
                                 updatedDate={listing.createdFormat}
+                                ownerId={listing.owner_id}
                             />
                         );
                     })}

@@ -4,7 +4,7 @@ import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Content } f
 import ListingInfoCard from './ListingInfoCard';
 import {Context} from '../actions/Store'
 
-export default function MainCard({phone, listId, thumb, images, realtor, address, price, bed, bath, updatedDate, cityAndState, features, neighborhood, zip, sqrFoot, comments}) {
+export default function MainCard({ownerId, phone, listId, thumb, images, realtor, address, price, bed, bath, updatedDate, cityAndState, features, neighborhood, zip, sqrFoot, comments}) {
 
     const [state, dispatch] = useContext(Context)
     const scrollX = useRef(new Animated.Value(0)).current;
@@ -25,7 +25,7 @@ export default function MainCard({phone, listId, thumb, images, realtor, address
                     listing_id: listId
                 })
         }
-        follows.includes(listId) ? alert("You already follow this listing!")
+        follows.includes(listId) || state.currentUser.id === ownerId ? alert("You already follow this listing!")
         : fetch(`http://10.0.0.113:3000/api/v1/follow_listings`, followListingPost)
             .then((response) => response.json())
             .then((json) => alert("Listing added to Bookmarks!"))
@@ -50,7 +50,9 @@ export default function MainCard({phone, listId, thumb, images, realtor, address
                     </Left>
                     <Right>
                         <TouchableOpacity onPress={() => handleBookmark()} >
+                            {state.currentUser && state.currentUser.id === ownerId ? null :
                             <Icon type="MaterialIcons" name="library-add" />
+                        }
                         </TouchableOpacity>
                     </Right>
                 </CardItem>
@@ -158,3 +160,38 @@ const styles = StyleSheet.create({
     }
   });
   
+
+//   const handleBookmark = () => {
+//     state.currentUser.followed_listings.forEach( list => {follows.push(list.id)})
+//     console.log(follows)
+//     const followListingPost = {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json",
+//             "Accept": "application/json"
+//         },
+//         body: JSON.stringify({
+//                 follower_id: state.currentUser.id,
+//                 listing_id: listId
+//             })
+//     }
+//     follows.includes(listId) || state.currentUser.id === ownerId ? alert("You already follow this listing!")
+//     : fetch(`http://10.0.0.113:3000/api/v1/follow_listings`, followListingPost)
+//         .then((response) => response.json())
+//         .then((sojn) => alert("Listing added to Bookmarks!"))
+//         // 
+//         .then((json) => { 
+//             dispatch({type: "ADD_FOLLOW_LISTING", payload: json})
+//         })
+//         .then(setFollows(prevState => ([listId, ...prevState])))
+//         .catch((error) => console.error(error))
+// }
+
+// const populateFollows = () => {
+//     state.currentUser &&
+//     state.currentUser.followed_listings.forEach( list => {setFollows(prevState => ([list.id, ...prevState]))})
+// }
+
+// useEffect(() => {
+//    populateFollows()
+//   }, []);
