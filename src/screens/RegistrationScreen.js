@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import {View, StyleSheet, Text, ScrollView, KeyboardAvoidingView, Switch, TouchableOpacity } from 'react-native';
+import {View, StyleSheet, Text, ScrollView, KeyboardAvoidingView, Switch, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import {Icon} from 'native-base';
 import * as ImagePicker from 'expo-image-picker';
 import Heading from '../components/Heading';
@@ -21,7 +21,7 @@ export default function RegistrationScreen({ navigation }) {
     const [regionalState, setRegionalState] = useState("Select State...");
     const [realtor, setRealtor] = useState(false);
     const [pickerToggle, setPickerToggle] = useState(false);
-    const [userImage, setUserImage] = useState("")
+    const [userImage, setUserImage] = useState(null)
 
     const toggleSwitch = () => setRealtor(prevState => !prevState);
 
@@ -77,13 +77,19 @@ export default function RegistrationScreen({ navigation }) {
                 {/* <Error error={" "} /> */}
             </View>
             <View style={styles.uploadIcons} >
-                    <TouchableOpacity onPress={handleAddPhotos} style={{paddingRight: 50}}>
-                        <Icon type="Entypo" name="image" />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={handleCamera}>
-                        <Icon type="Entypo" name="camera"/>
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity onPress={handleAddPhotos} style={{paddingRight: 50}}>
+                    <Icon type="Entypo" name="image" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleCamera}>
+                    <Icon type="Entypo" name="camera"/>
+                </TouchableOpacity>
+            </View>
+            {userImage && 
+                <Image
+                    style={{width: 100, height: 100}}
+                    source={{uri: userImage.uri }}
+                /> 
+            }
             <Input 
                 style={styles.input} 
                 placeholder={"Enter First Name ..."} 
