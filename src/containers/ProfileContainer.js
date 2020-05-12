@@ -37,7 +37,7 @@ function ProfileContainer() {
             />
                 <Content showsVerticalScrollIndicator={false}>
                     <ProfileCard 
-                        pic={user.pro_pic} 
+                        pic={user.uploaded_image ? user.uploaded_image : user.pro_pic} 
                         firstName={user.first_name} 
                         lastName={user.last_name} 
                         city={user.city} 
