@@ -40,7 +40,11 @@ export default function CommentList({listId, comments, realtor, address, price, 
                     comments.map((comment, commentIndex) => {
                         return (
                             <Left key={commentIndex} style={styles.container}>
+                                {comment.user.uploaded_image ? 
+                                <Thumbnail small source={{uri: comment.user.uploaded_image.replace('localhost', "10.0.0.113")}} />
+                                :
                                 <Thumbnail small source={{uri: comment.user.pro_pic}}/> 
+                                }
                                 <Body>
                                     <Text style={styles.user}>{comment.user.first_name}</Text>
                                     <Text note>{comment.content}</Text>
