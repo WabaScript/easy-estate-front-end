@@ -7,7 +7,7 @@ import { Icon, Card, CardItem, Left, Thumbnail, Body, Content } from 'native-bas
 function ProfileCard({ pic, firstName, lastName, city, state, realtor }) {
     return (
         <View >
-            {pic.indexOf['localhost'] !== -1 ?
+            {pic ?
                 <Thumbnail style={styles.thumby} large source={{ uri: pic.replace('localhost', "10.0.0.113") }} />
                 :
                 <Thumbnail style={styles.thumby} large source={{uri: pic}} /> 
