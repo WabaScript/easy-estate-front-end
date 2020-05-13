@@ -62,6 +62,9 @@ export default function MainCard({ownerId, phone, listId, thumb, images, realtor
                         pagingEnabled
                         showsHorizontalScrollIndicator={false}
                         scrollEventThrottle={10}
+                        decelerationRate={0} //snap
+                        snapToInterval={windowWidth} //your element width
+                        snapToAlignment={"center"}
                         onScroll={Animated.event([{
                             nativeEvent: {
                                 contentOffset: {
