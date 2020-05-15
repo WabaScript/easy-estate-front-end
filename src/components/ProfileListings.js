@@ -21,6 +21,9 @@ function ProfileListings({ listings }) {
                         horizontal={true}
                         pagingEnabled
                         showsHorizontalScrollIndicator={false}
+                        decelerationRate={0} //snap
+                        snapToInterval={windowWidth * .8} //your element width
+                        snapToAlignment={"center"}
                         scrollEventThrottle={10}
                         onScroll={Animated.event([{
                             nativeEvent: {
@@ -32,13 +35,14 @@ function ProfileListings({ listings }) {
                     >
                         {listings.map((listing, listingIndex) => {
                             return (
-                                <View style={{ width: windowWidth, height: 300 }} key={listingIndex} >
+                                <View style={{ width: windowWidth * .8, height: 275 }} key={listingIndex} >
                                     <ImageBackground 
                                         source={{ uri: listing.uploaded_images.length !== 0 ? 
                                             listing.uploaded_images[0].replace('localhost', "10.0.0.113") : listing.default_image[0] }} 
                                         style={styles.card} 
                                         />
-                                    <Text>          {listing.address} {listing.city}, {listing.state} - {listing.price ? money(listing.price) : "$0.00"} </Text>
+                                    <Text style={{textAlign: "center"}}> {listing.address} {listing.city}, {listing.state}</Text>
+                                    <Text style={{textAlign: "center"}}> {listing.price ? money(listing.price) : "$0.00"} </Text>
                                 </View>
                             );
                         })}
