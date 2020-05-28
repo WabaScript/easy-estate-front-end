@@ -59,7 +59,7 @@ const NewListingForm = ({ navigation, submitListing }) => {
 
     const handleCamera = () => {
         ImagePicker.getCameraPermissionsAsync()
-        ImagePicker.launchCameraAsync({base64: true}).then(img => setImageArray(prevState => ([img, ...prevState])))
+        ImagePicker.launchCameraAsync({base64: true}).then(img => !img.cancelled && setImageArray(prevState => ([img, ...prevState])))
     }
 
     return (
