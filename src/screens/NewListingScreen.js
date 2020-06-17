@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import {Context} from '../actions/Store'
 import NewListingForm from "../components/NewListingForm";
+import {locHost} from '../helpers/localhost';
 
 function NewListingScreen({navigation}) {
 
@@ -16,7 +17,7 @@ function NewListingScreen({navigation}) {
             },
             body: JSON.stringify({listing: newListing})
         }
-        fetch(`http://10.0.0.113:3000/api/v1/listings`, listingPost)
+        fetch(`http://${locHost}:3000/api/v1/listings`, listingPost)
             .then((response) => response.json())
             .then((json) => { 
                 if (!json.errors){

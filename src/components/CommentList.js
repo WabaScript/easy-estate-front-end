@@ -3,6 +3,7 @@ import { Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native'
 import { Thumbnail, Body, Left, Right, Button, Icon } from 'native-base'
 import Input from './Input'
 import {Context} from '../actions/Store'
+import {locHost} from '../helpers/localhost'
 
 export default function CommentList({listId, comments, realtor, address, price, bed, bath, phone}) {
 
@@ -24,7 +25,7 @@ export default function CommentList({listId, comments, realtor, address, price, 
                     content: comment
                 })
         }
-        const response = await fetch(`http://10.0.0.113:3000/api/v1/comments`, commentPost)
+        const response = await fetch(`http://${locHost}:3000/api/v1/comments`, commentPost)
         const body = await response.json()
         comments.push(body)
         setToggleComBox(!toggleComBox)
@@ -41,7 +42,7 @@ export default function CommentList({listId, comments, realtor, address, price, 
                         return (
                             <Left key={commentIndex} style={styles.container}>
                                 {comment.user.uploaded_image ? 
-                                <Thumbnail small source={{uri: comment.user.uploaded_image.replace('localhost', "10.0.0.113")}} />
+                                <Thumbnail small source={{uri: comment.user.uploaded_image.replace('localhost', `${locHost}`)}} />
                                 :
                                 <Thumbnail small source={{uri: comment.user.pro_pic}}/> 
                                 }

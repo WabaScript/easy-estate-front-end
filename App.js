@@ -7,6 +7,7 @@ import LoginScreen from './src/screens/LoginScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import AuthStackNavigator from './src/navigation/AuthStackNavigator';
 import Store from './src/actions/Store'
+import { locHost } from './src/helpers/localhost'
 
 const RootStack =createStackNavigator()
 

@@ -1,7 +1,7 @@
 import React, { Component, useRef } from "react";
 import { View, Text, StyleSheet, ScrollView, ImageBackground, Animated, useWindowDimensions } from "react-native";
-
-import { Icon, Container, Content, Card, CardItem } from 'native-base'
+import { Icon, Container, Content, Card, CardItem } from 'native-base';
+import {locHost} from '../helpers/localhost';
 
 
 function ProfileListings({ listings }) {
@@ -38,7 +38,7 @@ function ProfileListings({ listings }) {
                                 <View style={{ width: windowWidth * .8, height: 275 }} key={listingIndex} >
                                     <ImageBackground 
                                         source={{ uri: listing.uploaded_images.length !== 0 ? 
-                                            listing.uploaded_images[0].replace('localhost', "10.0.0.113") : listing.default_image[0] }} 
+                                            listing.uploaded_images[0].replace('localhost', `${locHost}`) : listing.default_image[0] }} 
                                         style={styles.card} 
                                         />
                                     <Text style={{textAlign: "center"}}> {listing.address} {listing.city}, {listing.state}</Text>

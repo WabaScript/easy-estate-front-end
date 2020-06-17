@@ -5,6 +5,7 @@ import {Context} from '../actions/Store'
 import { Icon, Container, Content } from 'native-base'
 import { ScrollView } from "react-native-gesture-handler";
 import {Money} from '../actions/Fetches'
+import {locHost} from '../helpers/localhost'
 
 function ListingsContainer() {
     const [isLoading, setLoading] = useState(true);
@@ -13,7 +14,7 @@ function ListingsContainer() {
 
     // adding the empt array arg at the end simulates a true componentdidmount, rendering only on initial mount
     useEffect(() => {
-        fetch('http://10.0.0.113:3000/api/v1/listings')
+        fetch(`http://${locHost}:3000/api/v1/listings`)
           .then((response) => response.json())
           .then((json) => { 
               dispatch({type: "SET_LISTINGS", payload: json})
