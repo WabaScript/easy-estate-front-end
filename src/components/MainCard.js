@@ -3,6 +3,7 @@ import {  Text, View, StyleSheet, ScrollView, ImageBackground, Animated, useWind
 import { Card, CardItem, Thumbnail, Body, Left, Right, Button, Icon, Content } from 'native-base'
 import ListingInfoCard from './ListingInfoCard';
 import {Context} from '../actions/Store'
+import {locHost} from '../helpers/localhost'
 
 export default function MainCard({ownerId, phone, listId, thumb, images, realtor, address, price, bed, bath, updatedDate, cityAndState, features, neighborhood, zip, sqrFoot, comments}) {
 
@@ -26,7 +27,7 @@ export default function MainCard({ownerId, phone, listId, thumb, images, realtor
                 })
         }
         follows.includes(listId) || state.currentUser.id === ownerId ? alert("You already follow this listing!")
-        : fetch(`http://10.0.0.113:3000/api/v1/follow_listings`, followListingPost)
+        : fetch(`http://${locHost}:3000/api/v1/follow_listings`, followListingPost)
             .then((response) => response.json())
             .then((json) => alert("Listing added to Bookmarks!"))
             .then(follows.push(listId))
@@ -76,7 +77,7 @@ export default function MainCard({ownerId, phone, listId, thumb, images, realtor
                             return (
                                 <View style={{ width: windowWidth, height: 300 }} key={imageIndex} >
                                     {image.indexOf['localhost'] !== -1 ?
-                                    <ImageBackground source={{ uri: image.replace('localhost', "10.0.0.113") }} style={styles.card} />
+                                    <ImageBackground source={{ uri: image.replace('localhost', `${locHost}`) }} style={styles.card} />
                                     :
                                     <ImageBackground source={{ uri: image}} style={styles.card} />}
                                 </View>
@@ -179,7 +180,7 @@ const styles = StyleSheet.create({
 //             })
 //     }
 //     follows.includes(listId) || state.currentUser.id === ownerId ? alert("You already follow this listing!")
-//     : fetch(`http://10.0.0.113:3000/api/v1/follow_listings`, followListingPost)
+//     : fetch(`http://${locHost}:3000/api/v1/follow_listings`, followListingPost)
 //         .then((response) => response.json())
 //         .then((sojn) => alert("Listing added to Bookmarks!"))
 //         // 

@@ -6,6 +6,7 @@ import ProfileCard from '../components/ProfileCard'
 import { LinearGradient } from 'expo-linear-gradient';
 import {Context} from '../actions/Store'
 import { Icon, Container, Content } from 'native-base'
+import {locHost} from '../helpers/localhost';
 
 function ProfileContainer() {
     const [state, dispatch] = useContext(Context);
@@ -16,7 +17,7 @@ function ProfileContainer() {
     // adding the empt array arg at the end simulates a true componentdidmount, rendering only on initial mount
     useEffect(() => {
         state.currentUser &&
-        fetch(`http://10.0.0.113:3000/api/v1/users/${state.currentUser.id}`)
+        fetch(`http://${locHost}:3000/api/v1/users/${state.currentUser.id}`)
           .then((response) => response.json())
           .then((json) => setUser(json))
           .catch((error) => console.error(error))

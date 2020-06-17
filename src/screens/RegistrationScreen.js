@@ -10,6 +10,7 @@ import Error from '../components/Error';
 import {Context} from '../actions/Store'
 import RegionButton from '../components/RegionButton'
 import RegionPicker from '../components/RegionPicker'
+import {locHost} from '../helpers/localhost';
  
 export default function RegistrationScreen({ navigation }) {
     const [firstName, setFirstName] = useState(null);
@@ -46,7 +47,7 @@ export default function RegistrationScreen({ navigation }) {
                image: userImage.base64
             }})
         }
-        fetch(`http://10.0.0.113:3000/api/v1/users`, newUserPost)
+        fetch(`http://${locHost}:3000/api/v1/users`, newUserPost)
             .then((response) => response.json())
             .then((json) => { 
                 if (json.errors){alert(json.errors)

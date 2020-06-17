@@ -6,7 +6,8 @@ import LoginScreenButton from '../components/LoginScreenButton';
 import LoginScreenRegButton from '../components/LoginScreenRegButton';
 import QuickHomeButton from '../components/QuickHomeButton';
 import Error from '../components/Error';
-import {Context} from '../actions/Store'
+import {Context} from '../actions/Store';
+import {locHost} from '../helpers/localhost';
  
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('')
@@ -19,7 +20,7 @@ export default function LoginScreen({ navigation }) {
   }
 
   handleLoginSubmit = () => {
-    fetch("http://10.0.0.113:3000/login", {
+    fetch(`http://${locHost}:3000/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

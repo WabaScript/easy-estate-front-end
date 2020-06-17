@@ -2,8 +2,8 @@
 
 // default api calls
 
-const api = "http://10.0.0.113:3000/"
-const apiV1 = "http://10.0.0.113:3000/api/v1/"
+// const api = `http://${locHost}:3000/`
+// const apiV1 = `http://${locHost}:3000/api/v1/`
 
 // default images. ~~ListingContainer.js
 export const defListImg = 'https://www.renovabike.it/wp-content/themes/gecko/assets/images/placeholder.png'

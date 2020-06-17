@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { View, Text, StyleSheet, AsyncStorage, Image } from "react-native";
 import {Context} from '../actions/Store'
 import QuickHomeButton from '../components/QuickHomeButton'
+import {locHost} from '../helpers/localhost';
 
 function SplashScreen({navigation}) {
 
@@ -10,7 +11,7 @@ function SplashScreen({navigation}) {
   const AutoSignIn = () => {
     let storedUserId = AsyncStorage.getItem("storedUserId")
     storedUserId.then(id => {
-      fetch(`http://10.0.0.113:3000/auto_login`, {
+      fetch(`http://${locHost}:3000/auto_login`, {
         headers: {
           "Authorization": parseInt(id)
         }
