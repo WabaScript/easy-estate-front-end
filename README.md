@@ -13,13 +13,13 @@
       </tr>
       <tr>
         <td align="center">
-          <a href="https://github.com/WabaScript/easy-estate-front-end"><img src="https://user-images.githubusercontent.com/59180399/87334370-88958080-c50c-11ea-      82e6-522066a1508c.PNG" title="EasyEstate" alt="EE" width="33%" height="33%"></a>
+         <a href="https://github.com/WabaScript/easy-estate-front-end"><img src="https://user-images.githubusercontent.com/59180399/87334373-89c6ad80-c50c-11ea-8ce9-00ced78ea0c1.PNG" title="EasyEstate" alt="EE" width="33%" height="33%"></a>
         </td>
         <td align="center">
-        <a href="https://github.com/WabaScript/easy-estate-front-end"><img src="https://user-images.githubusercontent.com/59180399/87334381-8cc19e00-c50c-11ea-94b6-6377796e7247.PNG" title="EasyEstate" alt="EE" width="33%" height="33%"></a>
+          <a href="https://github.com/WabaScript/easy-estate-front-end"><img src="https://user-images.githubusercontent.com/59180399/87334383-8d5a3480-c50c-11ea-8c46-c64a80ca458c.PNG" title="EasyEstate" alt="EE" width="33%" height="33%"></a>
         </td>
         <td align="center">
-          <a href="https://github.com/WabaScript/easy-estate-front-end"><img src="https://user-images.githubusercontent.com/59180399/87334382-8d5a3480-c50c-11ea-82ad-1a95acefeed4.PNG" title="EasyEstate" alt="EE" width="33%" height="33%"></a>
+          <a href="https://github.com/WabaScript/easy-estate-front-end"><img src="https://user-images.githubusercontent.com/59180399/87334381-8cc19e00-c50c-11ea-94b6-6377796e7247.PNG" title="EasyEstate" alt="EE" width="33%" height="33%"></a>
         </td>
       </tr>
     </tbody>
@@ -27,11 +27,11 @@
 </div>
 
 
+          <a href="https://github.com/WabaScript/easy-estate-front-end"><img src="https://user-images.githubusercontent.com/59180399/87334382-8d5a3480-c50c-11ea-82ad-1a95acefeed4.PNG" title="EasyEstate" alt="EE" width="33%" height="33%"></a>
 
-<a href="https://github.com/WabaScript/easy-estate-front-end"><img src="https://user-images.githubusercontent.com/59180399/87334373-89c6ad80-c50c-11ea-8ce9-00ced78ea0c1.PNG" title="EasyEstate" alt="EE" width="33%" height="33%"></a>
 
 <a href="https://github.com/WabaScript/easy-estate-front-end"><img src="https://user-images.githubusercontent.com/59180399/87334380-8c290780-c50c-11ea-9b68-8eeef90fded7.PNG" title="EasyEstate" alt="EE" width="33%" height="33%"></a>
 
 
-<a href="https://github.com/WabaScript/easy-estate-front-end"><img src="https://user-images.githubusercontent.com/59180399/87334383-8d5a3480-c50c-11ea-8c46-c64a80ca458c.PNG" title="EasyEstate" alt="EE" width="33%" height="33%"></a>
+
 
