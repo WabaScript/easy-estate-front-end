@@ -26,11 +26,4 @@
   </table>
 </div>
 
-          <a href="https://github.com/WabaScript/easy-estate-front-end"><img src="https://user-images.githubusercontent.com/59180399/87334381-8cc19e00-c50c-11ea-94b6-6377796e7247.PNG" title="EasyEstate" alt="EE" width="33%" height="33%"></a>
-
-
-<a href="https://github.com/WabaScript/easy-estate-front-end"><img src="https://user-images.githubusercontent.com/59180399/87334380-8c290780-c50c-11ea-9b68-8eeef90fded7.PNG" title="EasyEstate" alt="EE" width="33%" height="33%"></a>
-
-
-
 
