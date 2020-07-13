@@ -3,7 +3,7 @@
 
 > Easy Estate is the premiere place to to shop for a new home. Encapsulated in a unique social media experience, Easy Estate gives buyers an intuitive way to to browse the market and gives sellers a simple way to share and advertise their listings.
 
-<a href="https://github.com/WabaScript/easy-estate-front-end"><img src="https://user-images.githubusercontent.com/59180399/87334370-88958080-c50c-11ea-82e6-522066a1508c.PNG" title="EasyEstate" alt="EE"></a>
+<a href="https://github.com/WabaScript/easy-estate-front-end"><img src="https://user-images.githubusercontent.com/59180399/87334370-88958080-c50c-11ea-82e6-522066a1508c.PNG" title="EasyEstate" alt="EE" width="33%" height="33%"></a>
 
 ![IMG_4829](https://user-images.githubusercontent.com/59180399/87334370-88958080-c50c-11ea-82e6-522066a1508c.PNG)
 ![IMG_4830](https://user-images.githubusercontent.com/59180399/87334373-89c6ad80-c50c-11ea-8ce9-00ced78ea0c1.PNG)
