@@ -44,7 +44,7 @@ export default function RegistrationScreen({ navigation }) {
                city: city,
                state: regionalState,
                realtor: realtor,
-               image: userImage.base64
+               image: userImage && userImage.base64
             }})
         }
         fetch(`http://${locHost}:3000/api/v1/users`, newUserPost)
