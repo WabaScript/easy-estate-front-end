@@ -30,7 +30,8 @@
 ## Back-end Set Up
 1. Fork and Clone Easy-Estate-Backend-API
 2. Bundle Install *Should you run into versioning issues, please contact me.
-3. Begin server with command: rails s
-  That's it for the back-end setup. With the server running, you can go ahead and setup the front-end. 
+3. Begin server with command: "rails s -b 0.0.0.0"
+  
+  - That's it for the back-end setup. With the server running, you can go ahead and setup the front-end. 
 
 
