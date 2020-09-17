@@ -40,7 +40,7 @@ export default function MainCard({ownerId, phone, listId, thumb, images, realtor
                 <CardItem>
                     <Left>
                         <TouchableOpacity onPress={() => {}}>
-                        { thumb && <Thumbnail source={{uri: thumb}} /> }
+                        { thumb ? <Thumbnail source={{uri: thumb}} /> : <Text> Error </Text> }
                         </TouchableOpacity>
                         <Body>
                     

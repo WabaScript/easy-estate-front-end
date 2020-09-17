@@ -40,7 +40,7 @@ function ListingsContainer() {
                                 key={index}
                                 listId={listing.id}
                                 realtor={listing.owner.first_name + listing.owner.last_name} 
-                                thumb={listing.owner.pro_pic} 
+                                thumb={listing.owner.uploaded_image ? listing.owner.uploaded_image : listing.owner.pro_pic}
                                 phone={listing.p_contact}
                                 price={listing.price && Money(listing.price)} 
                                 images={listing.uploaded_images.length >= 1 ? listing.uploaded_images : listing.default_image} 
