@@ -1,2 +1,2 @@
 
-export const locHost = '192.168.0.45'
+export const locHost = '192.168.1.98'
